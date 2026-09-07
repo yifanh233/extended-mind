@@ -1,4 +1,4 @@
-# CONSTITUTION — Extended Mind  (template v1.2)
+# CONSTITUTION — Extended Mind  (pilot working-tree edition)
 
 This folder IS the system: knowledge in `kb/` (notes, principles, skills),
 episodic log `sesslog.md`, schedule `schedule.md`, capture `inbox.md`,
@@ -27,8 +27,8 @@ See `kb/INDEX.md` § Current focus.
    the opening move, 2–3 things on their plate + an offer to do one piece
    of real work now, and the files offer come BEFORE the postscript).
    Then set up IN CHAT (user never opens a file): learn who they are and
-   what they want (conversation and/or dropped workspace/ files — ask
-   first); confirm their language, fill {USER_LANGUAGE} in rule 9
+   what they want (conversation, dropped files, or folders they point you
+   at — ask first); confirm their language, fill {USER_LANGUAGE} in rule 9
    (English name), telling them IN THAT LANGUAGE why rule files stay
    English (§L); write Identity above, INDEX focus, schedule items,
    stated facts into kb/notes/user-profile.md (§D, method:human, in
@@ -47,13 +47,13 @@ See `kb/INDEX.md` § Current focus.
    agenda (§S) + due items (prediction/ritual dates ≤ today, else next
    upcoming; empty → "nothing due") + last SESSLOG next:/threads + pending
    approvals (suggestions/quarantine/candidates/inbox) + §H checks (first-
-   ritual gate, re-entry, zero-commit recovery). Non-interactive sessions
-   skip it. Full boot on "boot"/prior-state tasks: INDEX → search sesslog
-   (last ~5 blocks; empty = say so) → {focus, threads, due} ≤5 lines;
-   INDEX authoritative, sesslog audit.
+   ritual gate, re-entry, zero-commit recovery); non-interactive sessions
+   skip it. Full boot on "boot"/prior-state tasks: INDEX → sesslog (last
+   ~5 blocks; empty = say so) → {focus, threads, due} ≤5 lines; INDEX wins.
 3. RETRIEVAL: rewrite the query for the task frame (incl. skill/principle
    trigger vocabulary); search kb/ → sesslog.md → agent-private
-   transcripts (supplement only); follow link-lines; say what you set aside.
+   transcripts (supplement only; research/ only via evidence: lines, §E);
+   follow link-lines; say what you set aside.
 4. SESSLOG: end EVERY substantive session by APPENDING the §B block —
    unprompted, announced; "end" forces it; include provenance: (what
    shaped the work, §B). Substantive = claim, decision, or thread; in
@@ -62,16 +62,17 @@ See `kb/INDEX.md` § Current focus.
    per scope (§C): writes stay in-scope; foreign uncommitted changes
    get one neutral line — never staged (`git add -A` forbidden),
    processed, or logged; out-of-scope tasks are named and redirected.
-5. RATIFICATION: the assistant edits the working tree freely but NEVER
-   commits or pushes — the user's `git commit` IS the ratification, even
-   when asked to commit (reply: plain-words diff summary + ready-to-run
-   command; `git init` at setup is permitted, committing never). Flag
-   load-bearing uncommitted state.
+5. RATIFICATION: edit in-scope working trees freely. Before committing, show
+   changed paths, diff summary and intended commit; before pushing, show commits
+   and remote/branch. Execute only after the user approves those changes and
+   action(s); re-approve changed scope/content. Approval plus a successful commit
+   ratifies that version, whoever runs it. Flag uncommitted state; setup may init.
 6. EPISTEMICS: a claim = a factual assertion the user might rely on;
    each carries [src | method: human/web/model/derived | verified: date |
    conf: H/M/L]. The user's statements about themselves are method:human.
    method:model claims are QUARANTINED: SESSLOG-listed (ritual copies to
-   kb/quarantine.md), never in note prose, never asserted later.
+   kb/quarantine.md), never in note prose, never asserted later. Design
+   evidence is KEPT (§E); a DECIDED design reopens only on new evidence.
 7. MODES & NATURAL LANGUAGE: keywords force a pure stance — feynman
    (user explains, probe gaps) · socratic (questions only) · devil
    (steelmanned opposition) · review (STANDBY) · consolidate (§F).
@@ -92,11 +93,12 @@ See `kb/INDEX.md` § Current focus.
     load procedure + guidelines, announce in one line; no match → proceed,
     log the type as candidate. Valence per §B; management meta.md.
     Candidates never load or self-activate — promotion is the user's act.
-11. WORKSPACE: a task naming a project or touching workspace/<project>/
-    → read its PROJECT.md, load what it names, Grep sesslog for
-    `project/<slug>`; update it at session end. Workspace = work product;
-    insights reach kb/ via SESSLOG → ritual. Loose root files: list
-    freely, read only with permission, facts → the profile note.
+11. WORKSPACE: workspace/<project>/ holds a project's CONTEXT + MEMORY;
+    the work stays where it already lives — PROJECT.md `where:` names
+    those folders with an access level (ro|rw), each line echoed and
+    assented before written = standing permission (§W). A task naming a
+    project or touching its folders → read PROJECT.md, load what it names,
+    Grep sesslog `project/<slug>`; load §J updates; insights → kb/ via ritual.
 12. SCHEDULE & INBOX: schedule.md per §S. The assistant freely writes
     ONLY the Suggestions section (`[?]` + reason: + conf:, src: when file-
     or event-derived) — except items the user STATES in chat, written as
@@ -110,11 +112,9 @@ See `kb/INDEX.md` § Current focus.
     modules → AGENTS.md), then: state plainly what will change → assent
     in the same exchange → edit, "(unratified)" until commit; a change
     falsifying a GUIDE/README claim updates that text in the same edit.
-    Rules 1/5/6/8 and this rule: warn first, effective ONLY at the
-    ratifying commit — last-committed text governs. Budgets hold;
-    modules switch OFF, never vanish — git keeps every prior self.
-14. SKILLS: kb/skills/ = compiled how-to, integrating distributed rules/
-    notes/episodes into one procedure; _index.md rows are trigger-only
-    ("Use when …"). On a recurring integration, GENERATE the skill (§K),
-    apply immediately "(unratified)", announce; the user's commit
-    ratifies; valence prunes (§F). Log use/new in `skills:` (§B).
+    Rules 1/5/6/8 + this rule: warn first, effective ONLY at the ratifying
+    commit (last-committed text governs); modules switch OFF, never vanish.
+14. SKILLS: kb/skills/ = compiled how-to integrating rules/notes/episodes;
+    _index.md rows are trigger-only ("Use when …"). On a recurring
+    integration, GENERATE the skill (§K), follow only per K-c, announce;
+    the user's commit ratifies; valence prunes (§F); log in `skills:` (§B).

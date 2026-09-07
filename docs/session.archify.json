@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "What happens in one session?",
+    "output": "session.html",
+    "quality_profile": "showcase",
+    "visual_preset": "editorial",
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "database": {
+          "label": "plain markdown files"
+        },
+        "backend": {
+          "label": "a running agent session"
+        },
+        "security": {
+          "label": "rule file"
+        },
+        "external": {
+          "label": "you, your folders, your commit"
+        }
+      }
+    },
+    "views": [
+      {
+        "id": "session",
+        "label": "One session, start to end",
+        "focus": [
+          "user",
+          "agent",
+          "memory",
+          "projects",
+          "gate"
+        ],
+        "note": "You talk; the agent reads rules + memory, works in your folders, appends one log block, proposes plan items; your commit makes it stick."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "user",
+      "type": "external",
+      "label": "You",
+      "sublabel": "judgment · approval",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "agent",
+      "type": "backend",
+      "label": "AI agent session",
+      "sublabel": "any coding agent",
+      "pos": [
+        300,
+        200
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "rules",
+      "type": "security",
+      "label": "AGENTS.md",
+      "sublabel": "the rules, read every session",
+      "pos": [
+        580,
+        40
+      ],
+      "size": [
+        190,
+        64
+      ]
+    },
+    {
+      "id": "memory",
+      "type": "database",
+      "label": "Your memory files",
+      "sublabel": "notes · log · plan · inbox",
+      "pos": [
+        580,
+        200
+      ],
+      "size": [
+        190,
+        64
+      ]
+    },
+    {
+      "id": "projects",
+      "type": "external",
+      "label": "Your project folders",
+      "sublabel": "anywhere on disk",
+      "pos": [
+        300,
+        400
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "gate",
+      "type": "external",
+      "label": "git commit",
+      "sublabel": "your approval",
+      "pos": [
+        580,
+        400
+      ],
+      "size": [
+        190,
+        64
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "security-group",
+      "label": "This folder — plain files, versioned by your commits",
+      "wraps": [
+        "rules",
+        "memory",
+        "gate"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "talk",
+      "from": "user",
+      "to": "agent",
+      "label": "natural language",
+      "variant": "emphasis"
+    },
+    {
+      "id": "rules-load",
+      "from": "rules",
+      "to": "agent",
+      "label": "loads at start",
+      "variant": "security",
+      "fromSide": "left",
+      "toSide": "top",
+      "via": [
+        [
+          390,
+          72
+        ]
+      ]
+    },
+    {
+      "id": "read",
+      "from": "memory",
+      "to": "agent",
+      "label": "reads at boot",
+      "fromSide": "left",
+      "toSide": "right",
+      "labelAt": [
+        530,
+        218
+      ]
+    },
+    {
+      "id": "write",
+      "from": "agent",
+      "to": "memory",
+      "label": "appends log · proposes [?]",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "via": [
+        [
+          390,
+          320
+        ],
+        [
+          675,
+          320
+        ]
+      ]
+    },
+    {
+      "id": "reach",
+      "from": "agent",
+      "to": "projects",
+      "label": "works there (where:)",
+      "variant": "dashed",
+      "labelAt": [
+        300,
+        345
+      ]
+    },
+    {
+      "id": "ratify",
+      "from": "user",
+      "to": "gate",
+      "label": "approve commit — ratifies folder",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "via": [
+        [
+          125,
+          520
+        ],
+        [
+          675,
+          520
+        ]
+      ],
+      "labelAt": [
+        353,
+        478
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "The one rule",
+      "items": [
+        "The agent edits files freely but never commits or pushes",
+        "Your git commit is the signature that makes anything permanent",
+        "Until then, everything it wrote is a proposal you can read in any editor"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Four doors",
+      "items": [
+        "A thought hit me → just say it",
+        "What should I do next? → your approved plan answers",
+        "Think this through with me → it pulls in what you told it before",
+        "Make it stick → say end, paste the two commit lines"
+      ]
+    }
+  ]
+}

@@ -5,10 +5,10 @@ this folder and say **hi**; the assistant will walk you through everything.*
 
 ## What this is
 
-An assistant that can help do almost anything — and doesn't start over. What
-you tell it, decide, and plan stays with it, organized, checked, and handed
-back exactly when it matters. Every conversation builds on the last instead
-of vanishing when you close it.
+A working method for continuing projects with AI agents. Decisions, plans and
+session handoffs stay in files the next agent can retrieve. Read [STATUS.md](STATUS.md)
+for the current state, [UPDATES.md](UPDATES.md) for session changes and
+[CHANGELOG.md](CHANGELOG.md) for version changes.
 
 Four things you get here that an ordinary chat — or a notes app — can't
 give you:
@@ -43,9 +43,9 @@ give you:
 
 - **Today**: say hi. The assistant introduces itself, asks what you'd like
   help with, and sets everything up in the chat — you never need to open a
-  file. If you want, drop any files about yourself or your projects into
-  the `workspace/` folder first, and it will (with your permission) read
-  them to get to know you faster.
+  file. Your projects stay wherever they already live — you just say
+  where, and it reads there (or, if you say so, works there). No folder?
+  Drop the file into `workspace/` — just as good.
 - **Tomorrow**: open a session. The first line already knows your plans,
   your projects, and where you left off.
 - **In two weeks**: it reminds you what's due, pulls up what you told it
@@ -61,9 +61,9 @@ give you:
    (occasional one-line tips aside — "no tips" stops those).
 3. **Think this through with me** → just talk. Everything relevant that
    you've ever told it loads itself.
-4. **Make it stick** → say **end**. The assistant writes the session into
-   memory and hands you two short lines to copy-paste — a *commit*, your
-   signature. Nothing becomes permanent memory without it.
+4. **Make it stick** → say **end**. The assistant writes the session, shows the
+   changes and asks for commit/push approval. It can execute the approved actions,
+   or you can run the commands. The approved commit accepts that version.
 
 ## Your first week
 
@@ -93,16 +93,22 @@ you approve them.)
 
 ## Five things worth knowing
 
-- **Your signature rule**: the assistant drafts; only your commit makes
-  things permanent. It will never commit for you — that's the whole trust
-  model, and it means you can always review before anything sticks.
+- **Your approval rule**: the assistant shows the changes before a commit,
+  and the commits/destination before a push. It may execute after you approve
+  those actions, or you can run Git yourself. Changed contents need fresh approval.
 - **Your permanent memory lives here**, as plain text files you can read
   with any editor. (Like any AI-agent setup, conversation history may also
   live outside this folder — where depends on the assistant you use.)
+  Research the assistant does before a design decision is kept raw under
+  `workspace/<project>/research/`, so "why did we decide that?" always has
+  an answer you can check.
 - **Hard to break**: every version you approve is kept forever. If something
   goes wrong, ask the assistant to restore an earlier one — then approve
   that, as usual. (Work since your last approval isn't protected yet; that's
-  what approving is for.)
+  what approving is for.) That protection covers this folder; a project
+  folder keeps its own history — and if it has none, the assistant says so
+  before its first edit there, and whenever it edits there it hands you a
+  second short commit for that folder.
 - **Not married to one AI**: the folder is the memory, not the assistant.
   Open it with Claude Code, Codex, Cursor, Gemini — whichever is best for
   the task — and each picks up exactly where the last left off. One at a
@@ -123,7 +129,8 @@ into reusable skills, and shows you a summary to approve.
 ## Your agents (any of them — or several)
 
 This system runs on any AI coding agent that can (a) read and write files
-in this folder, (b) run shell commands and git, and (c) load a standing
+in this folder and in any project folder you point it at, (b) run shell
+commands and git, and (c) load a standing
 instruction file each session — plus, ideally, (d) web search, which the
 tidy-up ritual uses to fact-check claims (without it, unverified claims
 simply stay quarantined). The constitution lives in `AGENTS.md`, the
@@ -145,9 +152,17 @@ cross-agent standard most tools read natively.
   their own (Jules, Devin, Copilot coding agent) — they break the
   your-commit-is-approval rule by design.
 
+Your work stays where it is: projects are reached by path, not moved into
+this folder. You say where once; the assistant echoes the line it will
+remember (read-only unless you say edit) and never asks *you* again —
+delete that line in the project's PROJECT.md to take it back. Your tool may
+still show its own access prompt each session (Claude Code does, for
+folders outside this one; `/add-dir <path>` answers it once per session)
+— that's the tool's safety check, not the assistant forgetting.
+
 Switching is seamless because the folder is the memory: say **end** (the
 session log is the baton), close, open the folder with the other agent.
-One assistant at a time.
+One live conversation per project at a time; different projects can run in parallel.
 
 ## For the assistant (first-contact script — follow on rule 0)
 
@@ -168,7 +183,7 @@ Steps, one at a time, plain language, no jargon before its moment:
    showing what it used · runs your day), each as something it *does for
    them*, not a feature name; (c) **the can-do menu** — a short bulleted
    list of concrete actions THEY can take today or any day: just talk
-   (with everything relevant pulled in) · hand it real work · tell it
+   (with relevant recorded context retrieved) · hand it real work · tell it
    facts and rules to keep · say **consolidate** every few days, explained
    in its own bullet (files the pile, fact-checks its own claims, connects
    ideas, flags contradictions, hands a brief to approve) · ask "what
@@ -192,7 +207,8 @@ Steps, one at a time, plain language, no jargon before its moment:
    without a goal — plus the files offer (step 2) as a closing aside.
    Before sending, check the `workspace` folder (ignore dotfiles like
    .gitkeep): if real files are there, name them and offer to read them
-   (permission first, per rule 11); only say it's empty if it is.
+   (permission first, per rule 11); only say it's empty if it is — and
+   when it is, offer a path OR a file; never ask them to move work in.
 
    **Write it as a pitch, not a manual**: what it does → why that's worth
    having → how they start. Capabilities only as concrete moments ("if you
@@ -237,7 +253,7 @@ Steps, one at a time, plain language, no jargon before its moment:
    > **I get sharper over time.** I notice what works between us and turn
    > it into rules I follow later. When we've done the same kind of work a
    > few times, I compile how we did it into a skill and apply it the next
-   > time. And for anything I produce, you can ask what went into it —
+   > time when the skill's follow policy permits. And for anything I produce, you can ask what went into it —
    > which rules, which memories, which skills — the load-bearing pieces
    > are always on the record.
    >
@@ -288,9 +304,10 @@ Steps, one at a time, plain language, no jargon before its moment:
    > one, and I'll do a real piece of it right now — judge me on work,
    > not promises.
    >
-   > (Prefer to show rather than tell? Put anything about yourself or your
-   > work into the `workspace` folder and I'll offer to read it — nothing
-   > is read without your say-so.)
+   > (Prefer to show rather than tell? Name the folder where your work
+   > already lives and I'll read its top level and tell you what I see —
+   > nothing deeper without your say-so. Or drop a file or two into
+   > `workspace` and I'll offer to read them.)
    >
    > One last thing — the name. This is your Extended Mind, a phrase from
    > philosophers Andy Clark and David Chalmers, who argued in 1998 that
@@ -301,19 +318,29 @@ Steps, one at a time, plain language, no jargon before its moment:
    > of you; it's a mind that's bigger because it includes this.
    >
    > (Whenever you're ready — those two or three things.)
-2. **Offer the two starts**: just keep talking, or — if they have notes,
-   plans, a resume, anything — drop files into `workspace/` and you'll
-   read them (ask permission before reading anything; summarize what you
-   learned back to them).
+2. **Offer the two starts**: just keep talking, or — if their work already
+   lives somewhere — they name the folder (no folder? a file dropped into
+   `workspace/` is just as good). Naming it in reply to your offer is the
+   yes to READ: read the top level and any README, summarize back, ask
+   before going deeper. Editing there is a SEPARATE yes, asked in plain
+   words at step 3 and recorded as the project's `where:` line at step 4
+   (§W) — never copy or move their files in. If the folder they name
+   CONTAINS this one, say so and stop: this folder must sit outside any
+   project (README).
 3. **Learn, conversationally** (one question per message): what they want
    to be called; what they're working on right now; one to three upcoming
    things with dates, if any. Reflect it back in a short summary and ask
-   if it's right.
+   if it's right — and, for any folder they named, include one plain
+   sentence: "I'll remember <project> lives at <path> and read there
+   without asking each time — and edit there too, if you say so. OK?"
+   The echoed `where:` line is written on that yes (rule 12).
 4. **On their assent, set up** (announce each in one plain line): write
    Identity & goals in AGENTS.md; Current focus in kb/INDEX.md; their
    stated items into schedule.md as approved `[ ]` lines (dates included;
    never add a priority yourself); a workspace/<project>/PROJECT.md for
-   any real project that came up. Confirm the user's language and fill
+   any real project that came up — context only; its `where:` block records
+   the folder, the access they gave (ro unless they said edit), and whether
+   it has its own git (§W). Confirm the user's language and fill
    {USER_LANGUAGE} in AGENTS.md rule 9 (English name), telling them IN
    THEIR LANGUAGE why the rule files stay English (§L). Facts they told you — or that their own files state — are method:human;
    write them into kb/notes/user-profile.md (one claim per line, their files
@@ -342,29 +369,45 @@ Steps, one at a time, plain language, no jargon before its moment:
    outline the job post). YOU produce the deliverable; formats where the
    user performs (mock interview, explaining back) only if they opt in —
    session one never tests the user. Prefer the item workable from what's
-   in hand: if the nearest-dated item needs a file they haven't dropped,
-   fold the ask into the files offer ("drop the deck in workspace/ and
-   I'll red-team its weakest claim") and do the tractable one meanwhile.
+   in hand: if the nearest-dated item needs a file you can't see yet,
+   fold the ask into the files offer ("tell me where the deck is — or drop
+   it in workspace/ — and I'll red-team its weakest claim") and do the
+   tractable one meanwhile. Day-one deliverables land in chat or
+   workspace/<project>/ — never in their folder before the edit-yes.
    Offer it in one line with a default;
    skip instantly on any hesitation. This is the promise "I do real work"
    cashed before the first signature.
-7. **Close the loop**: append the first SESSLOG block (announce it as
+7. **Close the loop**: update STATUS, append the short UPDATES entry, and
+   update CHANGELOG's Unreleased section per §J; then append the first SESSLOG block (announce it as
    "writing today into memory" — include the provenance: field like every
    block). Show a 3-line recap + the four doors. Then hand them the
    first commit, introduced as: *"this is your
    signature — paste it to make today permanent."* Hand it as TWO short
-   lines (`git add -A`, then `git commit -m "day one"` — a `;`-joined line
+   lines (an explicit `git add` list of the setup files, including the update
+   views and the user's new project context, then `git commit -m "day one"` — a `;`-joined line
    fails in Windows cmd), and SAY WHERE to run them for this environment:
    a second terminal in this folder, a shell prefix if the agent has one
    (Claude Code: `!`), or after exiting the chat. If the user pastes the
    commands into the chat instead, treat it as ratification intent —
-   re-explain the one concrete way to run them here; never run them
-   yourself.
+   show the changes and intended actions first; after explicit approval, execute
+   them or explain how the user can run them. Never assume approval for unseen changes. If you edited inside a `where:` folder today, hand a second
+   short commit for that folder by explicit path (or say it has no git).
 8. **Afterwards**: if the conversation continues substantively after
    setup, append a second normal SESSLOG block at the real end — the setup
    block covers setup only. Teach one term at a time, always right after the act it
    names (first capture → name `capture:`; first suggestion → explain
    approval; first `end` → explain the commit). Never require opening a
-   file. Never read their dropped files without asking. If they ask what
+   file. Never read or edit their files or folders without a yes in plain
+   words (a `where:` line is that yes, at the access level it records). If
+   they ask what
    you can do, show the four doors + the mode keywords, not a feature
    list (§H's help rule — it applies in every later session too).
+
+## Project pilot and updates
+
+For the project loop, read [PILOT.md](PILOT.md). Every substantive session
+updates the scope's STATUS and appends a brief UPDATES entry with a trace to
+SESSLOG. Version changes collect in CHANGELOG's Unreleased section until the
+user releases them. Setup and project continuation must load §J. Feedback is
+optional; [FEEDBACK.md](FEEDBACK.md) provides three short prompts. A project
+explain-back is offered at a declared stakes moment, not imposed on each task.

@@ -1,0 +1,431 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "How does what you say become permanent knowledge?",
+    "output": "architecture.html",
+    "quality_profile": "showcase",
+    "visual_preset": "editorial",
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "database": {
+          "label": "plain markdown files"
+        },
+        "backend": {
+          "label": "a running process (session, ritual)"
+        },
+        "security": {
+          "label": "rule file"
+        },
+        "external": {
+          "label": "you, your folders, your commit"
+        }
+      }
+    },
+    "views": [
+      {
+        "id": "session",
+        "label": "1 · A normal session",
+        "focus": [
+          "user",
+          "agent",
+          "constitution",
+          "schedule",
+          "sesslog",
+          "notes",
+          "projects",
+          "gate"
+        ],
+        "note": "The agent loads the rules, reads notes and the last log block, works in your folders, proposes plan items, appends a log block; you commit."
+      },
+      {
+        "id": "memory-path",
+        "label": "2 · From log to knowledge",
+        "focus": [
+          "sesslog",
+          "ritual",
+          "notes",
+          "quarantine",
+          "principles",
+          "skills",
+          "gate",
+          "user"
+        ],
+        "note": "Say consolidate: the ritual distills log blocks into notes, web-verifies held claims, updates principle records, drafts skills; you commit."
+      },
+      {
+        "id": "governance",
+        "label": "3 · What frames the agent",
+        "focus": [
+          "constitution",
+          "principles",
+          "skills",
+          "agent",
+          "gate",
+          "user"
+        ],
+        "note": "Rules frame every session, the router loads matching judgment, skills execute repeated work; nothing is ratified until you commit."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "user",
+      "type": "external",
+      "label": "You",
+      "sublabel": "judgment · approval",
+      "pos": [
+        40,
+        300
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "agent",
+      "type": "backend",
+      "label": "AI agent session",
+      "sublabel": "any coding agent",
+      "pos": [
+        250,
+        300
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "projects",
+      "type": "external",
+      "label": "Your project folders",
+      "sublabel": "named by where: lines",
+      "pos": [
+        250,
+        580
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "constitution",
+      "type": "security",
+      "label": "AGENTS.md",
+      "sublabel": "rules + templates.md",
+      "pos": [
+        500,
+        40
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "principles",
+      "type": "database",
+      "label": "kb/principles/",
+      "sublabel": "router + judgment",
+      "pos": [
+        750,
+        40
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "skills",
+      "type": "database",
+      "label": "kb/skills/",
+      "sublabel": "compiled how-to",
+      "pos": [
+        1000,
+        40
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "schedule",
+      "type": "database",
+      "label": "schedule.md + inbox.md",
+      "sublabel": "plan · capture",
+      "pos": [
+        500,
+        300
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "sesslog",
+      "type": "database",
+      "label": "sesslog.md",
+      "sublabel": "one block · read at boot",
+      "pos": [
+        500,
+        440
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "ritual",
+      "type": "backend",
+      "label": "Consolidation ritual",
+      "sublabel": "on consolidate",
+      "pos": [
+        750,
+        440
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "notes",
+      "type": "database",
+      "label": "kb/notes/ + INDEX",
+      "sublabel": "read at boot · sourced",
+      "pos": [
+        1000,
+        440
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "quarantine",
+      "type": "database",
+      "label": "kb/quarantine.md",
+      "sublabel": "held, never asserted",
+      "pos": [
+        1000,
+        580
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "gate",
+      "type": "external",
+      "label": "git commit",
+      "sublabel": "ratifies this folder",
+      "pos": [
+        40,
+        580
+      ],
+      "size": [
+        180,
+        64
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Session (context not shared between sessions)",
+      "wraps": [
+        "agent"
+      ]
+    },
+    {
+      "kind": "security-group",
+      "label": "This folder — plain files, versioned by your commits",
+      "wraps": [
+        "constitution",
+        "principles",
+        "skills",
+        "schedule",
+        "sesslog",
+        "notes",
+        "quarantine"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "talk",
+      "from": "user",
+      "to": "agent",
+      "label": "natural language",
+      "variant": "emphasis",
+      "labelAt": [
+        225,
+        378
+      ]
+    },
+    {
+      "id": "rules-load",
+      "from": "constitution",
+      "to": "agent",
+      "label": "loads at start",
+      "variant": "security",
+      "fromSide": "left",
+      "toSide": "top",
+      "via": [
+        [
+          340,
+          72
+        ]
+      ]
+    },
+    {
+      "id": "router",
+      "from": "constitution",
+      "to": "principles",
+      "label": "rule 10: router",
+      "variant": "dashed",
+      "fromSide": "right",
+      "toSide": "left",
+      "labelAt": [
+        715,
+        118
+      ]
+    },
+    {
+      "id": "suggest",
+      "from": "agent",
+      "to": "schedule",
+      "label": "proposes [?]"
+    },
+    {
+      "id": "append",
+      "from": "agent",
+      "to": "sesslog",
+      "label": "appends a block",
+      "variant": "emphasis"
+    },
+    {
+      "id": "reach",
+      "from": "agent",
+      "to": "projects",
+      "label": "works there",
+      "variant": "dashed",
+      "labelAt": [
+        340,
+        540
+      ]
+    },
+    {
+      "id": "gather",
+      "from": "sesslog",
+      "to": "ritual",
+      "label": "blocks since last",
+      "fromSide": "right",
+      "toSide": "left",
+      "labelAt": [
+        710,
+        518
+      ]
+    },
+    {
+      "id": "distill",
+      "from": "ritual",
+      "to": "notes",
+      "label": "distills",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "verify",
+      "from": "ritual",
+      "to": "quarantine",
+      "label": "web-verifies"
+    },
+    {
+      "id": "garden",
+      "from": "ritual",
+      "to": "principles",
+      "label": "updates records",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "compile",
+      "from": "principles",
+      "to": "skills",
+      "label": "repeat → skill draft",
+      "variant": "dashed",
+      "fromSide": "right",
+      "toSide": "left",
+      "labelAt": [
+        960,
+        118
+      ]
+    },
+    {
+      "id": "ratify",
+      "from": "user",
+      "to": "gate",
+      "label": "git commit",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        130,
+        378
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Trust ladder",
+      "items": [
+        "Working tree = proposal; your commit = ratified truth for everything in this folder",
+        "The agent shows changes before commit/push and executes only after user approval",
+        "Rules that protect you (honesty, pushback, approval) change only at a ratifying commit"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Memory tiers",
+      "items": [
+        "Rules frame · principles judge · skills execute · notes know · episodes remember",
+        "Always loaded: AGENTS.md + kb/INDEX.md — line-budgeted, because loading costs context",
+        "Every note claim carries src · method (human/web/model/derived) · verified · conf",
+        "Model-generated claims are quarantined: listed, never asserted, verified by the ritual"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Loops",
+      "items": [
+        "Session: one-line boot → work → one log block (automatic) → your commit",
+        "Consolidate (on your word, every few days): distill · verify · bridge · Brief",
+        "Plan: 'what should I do next?' answers from YOUR approved items; suggestions only when none remain",
+        "Learning: what worked → candidate principle → you promote → loads; the same integration twice → a skill draft → your commit"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Your projects",
+      "items": [
+        "Work stays where it lives; workspace/<project>/PROJECT.md where: lines point at those folders",
+        "Each line echoed and assented once = standing permission (read-only unless you say rw)",
+        "One live session per scope; end is the baton between agents and windows"
+      ]
+    }
+  ]
+}

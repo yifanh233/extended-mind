@@ -2,3 +2,5 @@
 *.tmp
 .obsidian/
 .trash/
+__pycache__/
+*.pyc

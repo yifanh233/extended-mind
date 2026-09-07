@@ -1,0 +1,546 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 552" role="img" lang="en" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="editorial" data-quality-profile="showcase">
+        <title id="archify-diagram-title">What happens in one session?</title>
+        <desc id="archify-diagram-description">You talk to an AI agent session in natural language. At the start of every session the agent loads AGENTS.md, the rule file, and reads your memory files: notes, the session log, the plan and the inbox. It works in your project folders, which stay where they are and are named by where: lines. During the session it appends one log block and proposes plan items marked [?]. Nothing becomes permanent until you approve a commit, whoever executes it, which ratifies this folder.</desc>
+        <!-- Definitions -->
+        <defs><style>:root,svg{--bg:#181611;--grid:#39342a;--text:#f4eddf;--text-muted:#b9ae9b;--text-dim:#776e60;--text-faint:#9d917e;--panel:rgba(35, 31, 24, 0.96);--panel-border:#625a4a;--lane-fill:rgba(52, 46, 35, 0.46);--lane-stroke:#726957;--arrow:#948978;--arrow-emphasis:#dd6b3d;--mask:#231f18;--frontend-fill:rgba(43, 133, 142, 0.16);--frontend-stroke:#7fc6c7;--backend-fill:rgba(63, 132, 92, 0.16);--backend-stroke:#8fc29e;--database-fill:rgba(117, 91, 141, 0.17);--database-stroke:#c0a4d0;--cloud-fill:rgba(170, 119, 49, 0.16);--cloud-stroke:#d8ad68;--security-fill:rgba(157, 69, 65, 0.17);--security-stroke:#df9085;--messagebus-fill:rgba(174, 79, 42, 0.16);--messagebus-stroke:#df946f;--external-fill:rgba(126, 115, 96, 0.18);--external-stroke:#b8ad99;--toolbar-bg:rgba(35, 31, 24, 0.92);--toolbar-border:#625a4a;--toolbar-text:#eee5d5;--toolbar-hover:#302a20;--toolbar-menu-bg:#231f18}
+html[data-embed="true"] .diagram-container svg{min-width: 0;}
+html[data-present="true"]:not([data-embed="true"]) .diagram-container > svg{flex: 1 1 auto;
+      height: 100%;
+      min-height: 0;
+      width: 100%;
+      min-width: 0;}
+/* Motion Governor gives the reader a real static state and gives the
+       strongest semantic action the only motion budget. Atmosphere resets to
+       its authored base instead of freezing mid-cycle. Static artifacts never
+       start a decorative pulse or scan. */
+    html:not([data-motion-capable="true"]) svg[data-animation="trace"] [data-animate]{animation: none !important;}
+html[data-motion="still"] .pulse-dot,
+    html[data-motion="still"] .diagram-container::before,
+    html[data-motion="still"] svg[data-animation="trace"] [data-animate],
+    html[data-motion-owner] .pulse-dot,
+    html[data-motion-owner] .diagram-container::before,
+    html[data-motion-owner] svg[data-animation="trace"] [data-animate],
+    html[data-embed="true"] .pulse-dot,
+    html[data-embed="true"] .diagram-container::before,
+    html[data-share-playback="true"] .pulse-dot,
+    html[data-share-playback="true"] .diagram-container::before,
+    html[data-document-hidden="true"] .pulse-dot,
+    html[data-document-hidden="true"] .diagram-container::before,
+    html[data-document-hidden="true"] svg[data-animation="trace"] [data-animate]{animation: none !important;}
+html[data-motion="still"] svg[data-story-playing="true"] .story-trail-flow{stroke-dasharray: none;
+      stroke-dashoffset: 0;
+      opacity: 0.55;}
+html[data-motion="still"] .guided-view-chapter,
+    html[data-motion="still"] svg [data-node-id],
+    html[data-motion="still"] svg [data-edge-from],
+    html[data-motion="still"] svg [data-detail],
+    html[data-motion="still"] svg [data-detail-anchor],
+    html[data-motion="still"] svg [data-legend-hit],
+    html[data-motion="still"] svg{transition: none !important;}
+svg{width: 100%;
+      min-width: min(900px, 100%);
+      display: block;
+      transform-origin: 0 0;
+      transition: transform 0.18s ease;}
+.diagram-container.is-camera-moving svg{transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);}
+.diagram-container.is-camera-transaction svg{transition: none;}
+.diagram-container.is-panning svg{transition: none;}
+.overview-map-surface > svg{width: 100%;
+      height: 100%;
+      min-width: 0;
+      transform: none !important;
+      transition: none !important;
+      display: block;
+      overflow: visible;}
+svg[data-chapter-handoff] [data-node-id][data-chapter-role="stay"]{opacity: 1;}
+svg[data-chapter-handoff] [data-node-id][data-chapter-role="enter"]{opacity: 0.78;}
+svg[data-chapter-handoff] [data-node-id][data-chapter-role="leave"]{opacity: 0.26;}
+svg [data-node-id][data-chapter-role]{opacity: 1 !important;}
+svg[data-chapter-preview] [data-node-id],
+      svg[data-chapter-preview] [data-edge-from]{opacity: 1 !important; filter: none !important;}
+.diagram-container svg [data-detail]{opacity: 1 !important;
+        pointer-events: auto !important;}
+.diagram-container svg [data-detail-anchor]{transform: none !important;}
+.diagram-container svg[data-lens-active] [data-node-id],
+      .diagram-container svg[data-lens-active] [data-edge-from],
+      .diagram-container svg[data-legend-preview-active] [data-node-id],
+      .diagram-container svg[data-legend-preview-active] [data-edge-from]{opacity: 1 !important;
+        filter: none !important;}
+.diagram-container svg[data-focus-active] [data-node-id],
+      .diagram-container svg[data-focus-active] [data-edge-from],
+      .diagram-container svg[data-reach-active] [data-node-id],
+      .diagram-container svg[data-reach-active] [data-edge-from],
+      .diagram-container svg[data-story-beat] [data-story-step],
+      .diagram-container svg[data-story-beat] [data-edge-from][data-story-beat-step],
+      .diagram-container svg[data-route-active] [data-node-id],
+      .diagram-container svg[data-route-active] [data-edge-from]{opacity: 1 !important;
+        filter: none !important;
+        animation: none !important;}
+.toolbar .export-menu button[data-format="svg"]::before,
+    .toolbar .export-menu button[data-format="webm"]::before{-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 2.5l7 4v7l-7 4-7-4v-7zM3 6.5l7 4 7-4M10 10.5v7' fill='none' stroke='black' stroke-width='1.7'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 2.5l7 4v7l-7 4-7-4v-7zM3 6.5l7 4 7-4M10 10.5v7' fill='none' stroke='black' stroke-width='1.7'/%3E%3C/svg%3E");}
+html:not([data-embed="true"]) .diagram-container[data-wide-diagram="true"] > svg{min-width: 720px;}
+html[data-present="true"]:not([data-embed="true"]) .diagram-container[data-wide-diagram="true"] > svg{width: 720px;
+        height: auto;
+        min-width: 720px;}
+/* ==========================================================
+       SVG SEMANTIC CLASSES — use these instead of inline fill/stroke
+       ========================================================== */
+    .c-grid{stroke: var(--grid); fill: none;}
+.c-mask{fill: var(--mask); stroke: none;}
+.c-backend{fill: var(--backend-fill);    stroke: var(--backend-stroke);}
+.c-database{fill: var(--database-fill);   stroke: var(--database-stroke);}
+.c-security{fill: var(--security-fill);   stroke: var(--security-stroke);}
+.c-external{fill: var(--external-fill);   stroke: var(--external-stroke);}
+/* Text helpers */
+    .t-primary{fill: var(--text);}
+.t-muted{fill: var(--text-muted);}
+.t-backend{fill: var(--backend-stroke);}
+.t-security{fill: var(--security-stroke);}
+.t-messagebus{fill: var(--messagebus-stroke);}
+/* Semantic Sigils are small authored role stamps, not icons from a brand
+       pack and not viewer controls. Prefix selectors with svg so the canonical
+       export's SVG-only stylesheet collector keeps them automatically. */
+    svg .semantic-sigil{fill: none;
+      stroke: currentColor;
+      stroke-width: 1.35;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.76;
+      pointer-events: none;}
+svg .semantic-sigil > *{vector-effect: non-scaling-stroke;}
+svg .semantic-sigil .sigil-fill{fill: currentColor; stroke: none;}
+svg .s-frontend{color: var(--frontend-stroke);}
+svg .s-backend{color: var(--backend-stroke);}
+svg .s-database{color: var(--database-stroke);}
+svg .s-cloud{color: var(--cloud-stroke);}
+svg .s-security{color: var(--security-stroke);}
+svg .s-messagebus{color: var(--messagebus-stroke);}
+svg .s-external{color: var(--external-stroke);}
+/* Brand Marks are authored identity badges. Their color is contained
+       inside one neutral plate so vendor color never replaces Archify's
+       semantic node and relationship vocabulary. */
+    svg .brand-mark{pointer-events: none;}
+svg .brand-mark-badge{fill: #fff; stroke: none;}
+svg .brand-mark-frame{fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 0.8;
+      vector-effect: non-scaling-stroke;}
+svg .brand-mark-fallback{fill: none;
+      stroke: #475569;
+      stroke-width: 1.15;
+      stroke-linecap: round;
+      stroke-linejoin: round;}
+/* Reading Depth is a viewer-only level-of-detail layer. MAP preserves the
+       authored structure and primary labels, READ restores relationship labels
+       and node context, and FULL restores tags and fine annotations. Semantic
+       intent can reveal the relevant detail without moving any geometry. */
+    svg [data-detail]{transition: opacity 160ms ease;}
+svg [data-detail-anchor]{transform-box: fill-box;
+      transform-origin: center;
+      transition: transform 160ms ease;}
+.diagram-container[data-detail-level="map"] svg [data-detail="context"],
+    .diagram-container[data-detail-level="map"] svg [data-detail="fine"],
+    .diagram-container[data-detail-level="read"] svg [data-detail="fine"]{opacity: 0;
+      pointer-events: none;}
+.diagram-container[data-detail-level="map"] svg [data-detail-anchor]{transform: translateY(8px);}
+/* Focus, lens, preview, route, and story states are stronger reader intent than
+       the global zoom level. Reveal only their exact semantic matches. */
+    svg[data-focus-active] [data-focus-match][data-detail],
+    svg[data-focus-active] [data-focus-match] [data-detail],
+    svg[data-reach-active] [data-reach-match][data-detail],
+    svg[data-reach-active] [data-reach-match] [data-detail],
+    svg[data-lens-active] [data-lens-match][data-detail],
+    svg[data-lens-active] [data-lens-match] [data-detail],
+    svg[data-legend-preview-active] [data-legend-preview-match][data-detail],
+    svg[data-legend-preview-active] [data-legend-preview-match] [data-detail],
+    svg[data-intent-trace-active] [data-intent-trace-match][data-detail],
+    svg[data-intent-trace-active] [data-intent-trace-match] [data-detail],
+    svg[data-route-active] [data-route-match][data-detail],
+    svg[data-route-active] [data-route-match] [data-detail],
+    svg[data-story-active] [data-story-step][data-detail],
+    svg[data-story-active] [data-story-step] [data-detail],
+    svg[data-relationship-preview-active] [data-relationship-preview][data-detail],
+    svg[data-relationship-preview-active] [data-relationship-preview] [data-detail],
+    svg [data-node-id]:hover [data-detail],
+    svg [data-node-id]:focus-visible [data-detail]{opacity: 1;
+      pointer-events: auto;}
+svg[data-focus-active] [data-focus-match] [data-detail-anchor],
+    svg[data-reach-active] [data-reach-match] [data-detail-anchor],
+    svg[data-lens-active] [data-lens-match] [data-detail-anchor],
+    svg[data-legend-preview-active] [data-legend-preview-match] [data-detail-anchor],
+    svg[data-intent-trace-active] [data-intent-trace-match] [data-detail-anchor],
+    svg[data-route-active] [data-route-match] [data-detail-anchor],
+    svg[data-story-active] [data-story-step] [data-detail-anchor],
+    svg [data-node-id]:hover [data-detail-anchor],
+    svg [data-node-id]:focus-visible [data-detail-anchor]{transform: none;}
+/* Arrows */
+    .a-default{stroke: var(--arrow); fill: none;}
+.a-emphasis{stroke: var(--arrow-emphasis); fill: none;}
+.a-security{stroke: var(--security-stroke); fill: none; stroke-dasharray: 5,5;}
+.a-dashed{stroke: var(--database-stroke); fill: none; stroke-dasharray: 4,4;}
+/* Arrowhead markers reference these */
+    .m-default{fill: var(--arrow);}
+.m-emphasis{fill: var(--arrow-emphasis);}
+.m-security{fill: var(--security-stroke);}
+.m-dashed{fill: var(--database-stroke);}
+/* Stable semantic exploration hooks emitted by every renderer. */
+    svg [data-node-id]{cursor: pointer;
+      transition: opacity 0.18s ease, filter 0.18s ease;}
+svg [data-edge-from]{transition: opacity 0.18s ease, filter 0.18s ease;}
+svg [data-node-id]:hover,
+    svg [data-node-id]:focus-visible{filter: drop-shadow(0 0 7px var(--frontend-stroke));
+      outline: none;}
+svg [data-node-id]:hover .source-evidence-beacon,
+    svg [data-node-id]:focus-visible .source-evidence-beacon,
+    svg [data-node-id][data-focus-selected] .source-evidence-beacon{opacity: 1;
+      filter: drop-shadow(0 0 4px color-mix(in srgb, var(--backend-stroke) 72%, transparent));}
+svg [data-legend-kind][role="button"]{cursor: pointer;}
+svg [data-legend-kind]:focus{outline: none;}
+svg [data-legend-hit]{fill: transparent;
+      stroke: transparent;
+      stroke-width: 1.4;
+      pointer-events: all;
+      vector-effect: non-scaling-stroke;
+      transition: stroke 150ms ease, stroke-width 150ms ease, filter 150ms ease;}
+svg [data-legend-count-badge]{pointer-events: none;}
+svg [data-legend-count-badge] rect{fill: var(--mask);
+      stroke: var(--panel-border);
+      stroke-width: 1;
+      vector-effect: non-scaling-stroke;}
+svg [data-legend-count-badge] text{fill: var(--text-muted);
+      font-size: 8px;
+      font-weight: 700;
+      text-anchor: middle;}
+svg [data-legend-kind][role="button"]:hover [data-legend-hit]{stroke: color-mix(in srgb, var(--database-stroke) 58%, transparent);}
+svg [data-legend-kind][role="button"]:focus-visible [data-legend-hit]{stroke: var(--frontend-stroke);
+      stroke-width: 1.8;
+      filter: drop-shadow(0 0 3px var(--frontend-stroke));}
+svg [data-legend-kind][data-legend-selected] [data-legend-hit]{stroke: var(--database-stroke);
+      stroke-width: 2.2;
+      stroke-dasharray: 3 2;}
+svg [data-legend-kind][data-legend-selected] [data-legend-count-badge] rect{stroke: var(--database-stroke);
+      stroke-width: 1.8;}
+svg [data-legend-kind][data-legend-zero]{opacity: 0.44;}
+svg[data-legend-preview-active] [data-node-id],
+    svg[data-legend-preview-active] [data-edge-from]{opacity: 0.11;}
+svg[data-legend-preview-active] [data-legend-preview-match]{opacity: 1;}
+svg[data-legend-preview-active] [data-legend-preview-peer]{opacity: 0.62;}
+svg[data-legend-preview-active] [data-legend-preview-selected]{filter: drop-shadow(0 0 8px var(--database-stroke));}
+svg[data-lens-active] [data-node-id],
+    svg[data-lens-active] [data-edge-from]{opacity: 0.11;}
+svg[data-lens-active] [data-lens-match]{opacity: 1;}
+svg[data-lens-active] [data-lens-peer]{opacity: 0.62;}
+svg[data-lens-active] [data-lens-selected]{filter: drop-shadow(0 0 10px var(--database-stroke));}
+svg[data-focus-active] [data-node-id],
+    svg[data-focus-active] [data-edge-from]{opacity: 0.13;}
+svg[data-focus-active] [data-focus-match]{opacity: 1;}
+svg[data-focus-active] [data-focus-selected]{filter: drop-shadow(0 0 10px var(--frontend-stroke));}
+/* Authored Reachability is a bounded graph query over the relationships
+       already present in the artifact. Upstream walks incoming edges;
+       downstream walks outgoing edges. It never claims runtime causality and
+       changes only viewer emphasis, not canonical geometry or export bytes. */
+    svg[data-reach-active] [data-node-id],
+    svg[data-reach-active] [data-edge-from]{opacity: 0.09;}
+svg[data-reach-active] [data-reach-match]{opacity: 1;}
+svg[data-reach-active="upstream"] [data-reach-origin]{filter: drop-shadow(0 0 11px var(--database-stroke));}
+svg[data-reach-active="downstream"] [data-reach-origin]{filter: drop-shadow(0 0 11px var(--backend-stroke));}
+svg[data-reach-active="upstream"] [data-edge-from][data-reach-match]{filter: drop-shadow(0 0 4px color-mix(in srgb, var(--database-stroke) 72%, transparent));}
+svg[data-reach-active="downstream"] [data-edge-from][data-reach-match]{filter: drop-shadow(0 0 4px color-mix(in srgb, var(--backend-stroke) 72%, transparent));}
+svg[data-relationship-direct-active] [data-node-id],
+    svg[data-relationship-direct-active] [data-edge-from]{opacity: 0.16;}
+svg[data-relationship-direct-active] [data-relationship-preview],
+    svg[data-relationship-direct-active] [data-relationship-preview-node]{opacity: 1;}
+svg[data-focus-active]:not([data-relationship-pin-active]) .relationship-hit-rail,
+    svg[data-story-active] .relationship-hit-rail,
+    svg[data-route-picking] .relationship-hit-rail,
+    svg[data-route-active] .relationship-hit-rail,
+    svg[data-lens-active] .relationship-hit-rail,
+    svg[data-chapter-preview] .relationship-hit-rail{pointer-events: none;}
+/* Relationship Preview is temporary exploration state layered on top of
+       neighborhood focus. It changes emphasis only; exported geometry and the
+       relationship's original solid/dashed visual language stay untouched. */
+    svg[data-relationship-preview-active] [data-focus-match]{opacity: 0.18;}
+svg[data-relationship-preview-active] [data-relationship-preview],
+    svg[data-relationship-preview-active] [data-relationship-preview-node]{opacity: 1;}
+svg[data-relationship-preview-active] [data-relationship-preview]{filter: drop-shadow(0 0 5px var(--arrow-emphasis));}
+svg[data-relationship-preview-active] [data-relationship-preview] path,
+    svg[data-relationship-preview-active] path[data-relationship-preview],
+    svg[data-relationship-preview-active] [data-relationship-preview] line,
+    svg[data-relationship-preview-active] line[data-relationship-preview],
+    svg[data-relationship-preview-active] [data-relationship-preview] polyline,
+    svg[data-relationship-preview-active] polyline[data-relationship-preview]{stroke-width: 2.75;}
+svg[data-relationship-preview-active] [data-relationship-preview-source]{filter: drop-shadow(0 0 7px var(--frontend-stroke));}
+svg[data-relationship-preview-active] [data-relationship-preview-target]{filter: drop-shadow(0 0 7px var(--database-stroke));}
+/* Intent Trace is a temporary, pre-click exploration layer. Related
+       topology stays readable while a short viewer-only signal runs over
+       cloned edge geometry; the authored edge remains untouched underneath. */
+    svg[data-intent-trace-active] [data-node-id],
+    svg[data-intent-trace-active] [data-edge-from]{opacity: 0.2;}
+svg[data-intent-trace-active] [data-intent-trace-match]{opacity: 1;}
+svg[data-intent-trace-active] [data-intent-trace-selected]{filter: drop-shadow(0 0 10px var(--frontend-stroke));}
+/* Route Probe separates a durable two-point query from selection and
+       one-hop hover. Only the chosen shortest directed path stays prominent;
+       the traveling signal is cloned viewer geometry and never authored SVG. */
+    svg[data-route-picking="target"] [data-node-id]{opacity: 0.24;}
+svg[data-route-picking="target"] [data-route-candidate],
+    svg[data-route-picking="target"] [data-route-start]{opacity: 1;}
+svg[data-route-picking] [data-node-id]{cursor: crosshair;}
+svg[data-route-picking] [data-route-start]{filter: drop-shadow(0 0 10px var(--frontend-stroke));}
+svg[data-route-active] [data-node-id],
+    svg[data-route-active] [data-edge-from]{opacity: 0.11;}
+svg[data-route-active] [data-route-match]{opacity: 1;}
+svg[data-route-active] [data-route-start]{filter: drop-shadow(0 0 11px var(--frontend-stroke));}
+svg[data-route-active] [data-route-end]{filter: drop-shadow(0 0 11px var(--security-stroke));}
+svg[data-route-active] [data-route-step]:not([data-route-start]):not([data-route-end]){filter: drop-shadow(0 0 7px var(--backend-stroke));}
+svg[data-route-journey] [data-route-match][data-route-journey-state="past"]{opacity: 0.62;}
+svg[data-route-journey] [data-route-match][data-route-journey-state="future"]{opacity: 0.34;}
+svg[data-route-journey] [data-route-match][data-route-journey-state="current"]{opacity: 1;}
+svg[data-route-journey] [data-node-id][data-route-journey-current]{filter: drop-shadow(0 0 10px var(--backend-stroke));}
+svg[data-route-journey] [data-edge-from][data-route-journey-current]{opacity: 1;
+      filter: drop-shadow(0 0 6px var(--backend-stroke));}
+svg[data-story-beat] [data-story-step]{opacity: 0.22;
+      filter: saturate(0.42);
+      transition: opacity 180ms ease, filter 180ms ease;}
+svg[data-story-beat] [data-story-step][data-story-beat-state="past"]{opacity: 0.72;
+      filter: saturate(0.82);}
+svg[data-story-beat] [data-story-step][data-story-beat-state="next"]{opacity: 0.5;
+      filter: saturate(0.66);}
+svg[data-story-beat] [data-story-step][data-story-beat-state="active"]{opacity: 1;
+      filter: drop-shadow(0 0 7px var(--frontend-stroke));
+      animation: archify-story-beat-node 360ms cubic-bezier(0.22, 1, 0.36, 1) both;}
+svg[data-story-beat] [data-edge-from][data-story-beat-step]{opacity: 0.16;
+      transition: opacity 160ms ease;}
+svg[data-story-beat] [data-edge-from][data-story-beat-step][data-story-beat-state="past"]{opacity: 0.58;}
+svg[data-story-beat] [data-edge-from][data-story-beat-step][data-story-beat-state="next"]{opacity: 0.34;}
+svg[data-story-beat] [data-edge-from][data-story-beat-step][data-story-beat-state="active"]{opacity: 1;}
+svg[data-story-beat] .story-trail-flow{opacity: 0; transition: opacity 160ms ease;}
+svg[data-story-beat] .story-trail-flow[data-story-beat-state="past"]{opacity: 0.34;}
+svg[data-story-beat] .story-trail-flow[data-story-beat-state="next"]{opacity: 0.2;}
+svg[data-story-beat] .story-trail-flow[data-story-beat-state="active"]{opacity: 0.92;}
+svg[data-story-beat] .story-trail-flow[data-story-pulse="true"]{stroke-dasharray: 2 13;
+      stroke-dashoffset: 30;
+      opacity: 0.92;
+      animation: archify-story-flow 0.78s linear 1 both;}
+/* Chapter Delta Preview is a static, pre-commit comparison between two
+       chapter focus sets. Symbols in the rail carry the meaning without color;
+       these SVG rules only make exact stable-ID membership easier to scan. */
+    svg[data-chapter-preview] [data-node-id],
+    svg[data-chapter-preview] [data-edge-from]{opacity: 0.1 !important;
+      filter: none !important;
+      transition: none !important;}
+svg[data-chapter-preview] .story-trail-overlay{opacity: 0.08 !important;}
+svg[data-chapter-preview] [data-node-id][data-chapter-preview-role="stay"]{opacity: 0.76 !important;
+      filter: saturate(0.7) !important;}
+svg[data-chapter-preview] [data-node-id][data-chapter-preview-role="enter"]{opacity: 1 !important;
+      filter: saturate(1.2) !important;}
+svg[data-chapter-preview] [data-node-id][data-chapter-preview-role="leave"]{opacity: 0.28 !important;
+      filter: grayscale(0.72) !important;}
+/* Dashed boundary variants */
+    .c-security-group{fill: transparent; stroke: var(--security-stroke); stroke-dasharray: 4,4;}
+/* Optional trace animation, enabled only by meta.animation = "trace".
+       The ordinary viewer performs one ambient pass and then restores the
+       authored solid/security/async line language. WebM samples the same
+       authored geometry into an explicit canvas timeline. */
+    html[data-ambient-motion="running"] svg[data-animation="trace"] [data-animate="edge"]{animation: archify-edge-flow 2.4s linear 1;
+      animation-delay: calc(var(--step, 0) * 160ms);}
+html[data-ambient-motion="running"] svg[data-animation="trace"] [data-animate="node"]{transform-box: fill-box;
+      transform-origin: center;
+      animation: archify-node-pulse 3.6s ease-in-out 1;
+      animation-delay: calc(var(--step, 0) * 160ms);}
+/* Embedded proofs are static until a named Story Trail chapter is played.
+       This keeps proof grids calm and ensures ?play=1 stops all viewer motion
+       after one 3.2 second chapter instead of leaving ambient trace loops on. */
+    html[data-embed="true"] svg[data-animation="trace"] [data-animate],
+    html[data-share-playback="true"] svg[data-animation="trace"] [data-animate]{animation: none !important;
+      stroke-dashoffset: 0;}
+svg[data-animation="trace"] [data-animate]{animation: none !important;
+        stroke-dashoffset: 0;}
+.guided-view-chapter,
+      svg[data-chapter-preview] [data-node-id],
+      svg[data-chapter-preview] [data-edge-from]{transition: none !important;}
+svg[data-story-playing="true"] .story-trail-flow{stroke-dasharray: none;
+        stroke-dashoffset: 0;
+        opacity: 0.55;}
+.source-evidence-beacon,
+      svg [data-node-id], svg [data-edge-from], svg [data-detail], svg [data-detail-anchor], svg [data-legend-hit], svg{transition: none !important;}
+svg .relationship-flow-pulse{stroke: var(--arrow-emphasis);
+      stroke-width: 2.75;
+      filter: none;}
+svg .semantic-flow-token{filter: none;}
+svg [data-intent-trace-selected],
+    svg .intent-trace-flow{filter: none;}
+svg [data-route-start],
+    svg [data-route-end],
+    svg [data-route-step],
+    svg .route-probe-flow,
+    svg .route-journey-flow{filter: none;}
+svg .c-grid{stroke-dasharray: 1 4;
+      opacity: 0.48;}
+svg .c-region{fill: color-mix(in srgb, var(--cloud-fill) 48%, transparent);
+      stroke-dasharray: 9 4;}
+svg [data-node-id]:hover,
+    svg [data-node-id]:focus-visible,
+    svg[data-focus-active] [data-focus-selected]{filter: drop-shadow(0 2px 2px color-mix(in srgb, var(--text) 18%, transparent));}
+svg .story-trail-flow{filter: none;}
+svg[data-story-beat] [data-story-step][data-story-beat-state="active"]{filter: drop-shadow(0 2px 2px color-mix(in srgb, var(--text) 16%, transparent));}
+svg[data-animation="trace"] [data-animate="edge"]{filter: none;
+      animation-duration: 2.2s;}
+svg[data-animation="trace"] [data-animate="node"]{animation-name: archify-editorial-node-pulse;
+      animation-duration: 3.5s;}</style>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+          </marker>
+          <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+          </marker>
+          <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+          </marker>
+          <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="0.5"/>
+          </pattern>
+        </defs><rect x="0" y="0" width="840" height="552" fill="#181611"/>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- Boundaries (behind everything) -->
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="security-group" data-composition-frame-id="0" data-composition-frame-label="This folder — plain files, versioned by your commits" x="550" y="10" width="250" height="474" rx="8" class="c-security-group" stroke-width="1"/>
+
+        <!-- Connection paths (before components for correct z-order) -->
+        <path data-edge-from="user" data-edge-to="agent" data-edge-label="natural language" data-edge-key="0" data-edge-id="talk" data-composition-points="210,232;300,232" d="M 210 232 L 300 232" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="rules" data-edge-to="agent" data-edge-label="loads at start" data-edge-key="1" data-edge-id="rules-load" data-composition-points="580,72;390,72;390,200" d="M 580 72 L 398 72 Q 390 72 390 80 L 390 200" class="a-security" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="memory" data-edge-to="agent" data-edge-label="reads at boot" data-edge-key="2" data-edge-id="read" data-composition-points="580,232;480,232" d="M 580 232 L 480 232" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="agent" data-edge-to="memory" data-edge-label="appends log · proposes [?]" data-edge-key="3" data-edge-id="write" data-composition-points="390,264;390,320;675,320;675,264" d="M 390 264 L 390 312 Q 390 320 398 320 L 667 320 Q 675 320 675 312 L 675 264" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="agent" data-edge-to="projects" data-edge-label="works there (where:)" data-edge-key="4" data-edge-id="reach" data-composition-points="390,264;390,400" d="M 390 264 L 390 400" class="a-dashed" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="user" data-edge-to="gate" data-edge-label="approve commit — ratifies folder" data-edge-key="5" data-edge-id="ratify" data-composition-points="125,264;125,520;675,520;675,464" d="M 125 264 L 125 512 Q 125 520 133 520 L 667 520 Q 675 520 675 512 L 675 464" class="a-security" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
+
+        <!-- Components -->
+        <g id="node-user" data-node-id="user" data-node-label="You" aria-label="Focus You, judgment · approval, Architecture component" data-node-kind="external" data-node-sublabel="judgment · approval" data-node-context="Architecture component">
+          <title>You · judgment · approval · Architecture component</title>
+          <rect x="40" y="200" width="170" height="64" rx="6" class="c-mask"/>
+          <rect x="40" y="200" width="170" height="64" rx="6" class="c-external" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(46 206) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="125" y="230" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">You</text>
+        <text data-detail="context" x="125" y="246" class="t-muted" font-size="9" text-anchor="middle">judgment · approval</text>
+        </g>
+
+        <g id="node-agent" data-node-id="agent" data-node-label="AI agent session" aria-label="Focus AI agent session, any coding agent, Architecture component" data-node-kind="backend" data-node-sublabel="any coding agent" data-node-context="Architecture component">
+          <title>AI agent session · any coding agent · Architecture component</title>
+          <rect x="300" y="200" width="180" height="64" rx="6" class="c-mask"/>
+          <rect x="300" y="200" width="180" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(306 206) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="390" y="230" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">AI agent session</text>
+        <text data-detail="context" x="390" y="246" class="t-muted" font-size="9" text-anchor="middle">any coding agent</text>
+        </g>
+
+        <g id="node-rules" data-node-id="rules" data-node-label="AGENTS.md" aria-label="Focus AGENTS.md, the rules, read every session, This folder — plain files, versioned by your commits" data-node-kind="security" data-node-sublabel="the rules, read every session" data-node-context="This folder — plain files, versioned by your commits">
+          <title>AGENTS.md · the rules, read every session · This folder — plain files, versioned by your commits</title>
+          <rect x="580" y="40" width="190" height="64" rx="6" class="c-mask"/>
+          <rect x="580" y="40" width="190" height="64" rx="6" class="c-security" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(586 46) scale(0.6875)">
+            <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
+            <path d="m5.8 8 1.5 1.5 3-3"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="675" y="70" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">AGENTS.md</text>
+        <text data-detail="context" x="675" y="86" class="t-muted" font-size="9" text-anchor="middle">the rules, read every session</text>
+        </g>
+
+        <g id="node-memory" data-node-id="memory" data-node-label="Your memory files" aria-label="Focus Your memory files, notes · log · plan · inbox, This folder — plain files, versioned by your commits" data-node-kind="database" data-node-sublabel="notes · log · plan · inbox" data-node-context="This folder — plain files, versioned by your commits">
+          <title>Your memory files · notes · log · plan · inbox · This folder — plain files, versioned by your commits</title>
+          <rect x="580" y="200" width="190" height="64" rx="6" class="c-mask"/>
+          <rect x="580" y="200" width="190" height="64" rx="6" class="c-database" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(586 206) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="675" y="230" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Your memory files</text>
+        <text data-detail="context" x="675" y="246" class="t-muted" font-size="9" text-anchor="middle">notes · log · plan · inbox</text>
+        </g>
+
+        <g id="node-projects" data-node-id="projects" data-node-label="Your project folders" aria-label="Focus Your project folders, anywhere on disk, Architecture component" data-node-kind="external" data-node-sublabel="anywhere on disk" data-node-context="Architecture component">
+          <title>Your project folders · anywhere on disk · Architecture component</title>
+          <rect x="300" y="400" width="180" height="64" rx="6" class="c-mask"/>
+          <rect x="300" y="400" width="180" height="64" rx="6" class="c-external" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(306 406) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="390" y="430" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Your project folders</text>
+        <text data-detail="context" x="390" y="446" class="t-muted" font-size="9" text-anchor="middle">anywhere on disk</text>
+        </g>
+
+        <g id="node-gate" data-node-id="gate" data-node-label="git commit" aria-label="Focus git commit, your approval, This folder — plain files, versioned by your commits" data-node-kind="external" data-node-sublabel="your approval" data-node-context="This folder — plain files, versioned by your commits">
+          <title>git commit · your approval · This folder — plain files, versioned by your commits</title>
+          <rect x="580" y="400" width="190" height="64" rx="6" class="c-mask"/>
+          <rect x="580" y="400" width="190" height="64" rx="6" class="c-external" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(586 406) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="675" y="430" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">git commit</text>
+        <text data-detail="context" x="675" y="446" class="t-muted" font-size="9" text-anchor="middle">your approval</text>
+        </g>
+
+        <!-- Connection labels -->
+        <g data-detail="context" data-edge-from="user" data-edge-to="agent" data-edge-label="natural language" data-edge-key="0" data-edge-id="talk">
+          <rect x="211.6" y="212" width="86.8" height="14" rx="3" class="c-mask"/>
+          <text x="255" y="222" class="t-backend" font-size="8" text-anchor="middle">natural language</text>
+        </g>
+        <g data-detail="context" data-edge-from="rules" data-edge-to="agent" data-edge-label="loads at start" data-edge-key="1" data-edge-id="rules-load">
+          <rect x="351.4" y="116" width="77.2" height="14" rx="3" class="c-mask"/>
+          <text x="390" y="126" class="t-security" font-size="8" text-anchor="middle">loads at start</text>
+        </g>
+        <g data-detail="context" data-edge-from="memory" data-edge-to="agent" data-edge-label="reads at boot" data-edge-key="2" data-edge-id="read">
+          <rect x="493.8" y="208" width="72.4" height="14" rx="3" class="c-mask"/>
+          <text x="530" y="218" class="t-muted" font-size="8" text-anchor="middle">reads at boot</text>
+        </g>
+        <g data-detail="context" data-edge-from="agent" data-edge-to="memory" data-edge-label="appends log · proposes [?]" data-edge-key="3" data-edge-id="write">
+          <rect x="465.1" y="300" width="134.8" height="14" rx="3" class="c-mask"/>
+          <text x="532.5" y="310" class="t-backend" font-size="8" text-anchor="middle">appends log · proposes [?]</text>
+        </g>
+        <g data-detail="context" data-edge-from="agent" data-edge-to="projects" data-edge-label="works there (where:)" data-edge-key="4" data-edge-id="reach">
+          <rect x="247" y="335" width="106" height="14" rx="3" class="c-mask"/>
+          <text x="300" y="345" class="t-messagebus" font-size="8" text-anchor="middle">works there (where:)</text>
+        </g>
+        <g data-detail="context" data-edge-from="user" data-edge-to="gate" data-edge-label="approve commit — ratifies folder" data-edge-key="5" data-edge-id="ratify">
+          <rect x="268.8" y="468" width="168.4" height="14" rx="3" class="c-mask"/>
+          <text x="353" y="478" class="t-security" font-size="8" text-anchor="middle">approve commit — ratifies folder</text>
+        </g>
+
+        <!-- Boundary labels (foreground masks keep routes out of titles) -->
+        <g data-graph-role="structural-frame-label" data-composition-frame-id="0" data-composition-frame-kind="security-group" data-composition-frame-label="This folder — plain files, versioned by your commits">
+          <rect data-graph-role="structural-frame-label-mask" x="554" y="20" width="242" height="16" rx="3" class="c-mask"/>
+          <text data-boundary-label="" x="558" y="31.435897435897438" class="t-security" font-size="7.435897435897436" font-weight="600">This folder — plain files, versioned by your commits</text>
+        </g>
+
+        <!-- Legend -->
+        <g data-legend="" data-legend-bridge="">
+          <text x="40" y="516" class="t-primary" font-size="12" font-weight="650">Legend</text>
+          <g data-legend-semantic-kind="backend" data-legend-kind="backend" data-legend-label="a running agent session" data-legend-x="40" data-legend-baseline="536" data-legend-width="158">
+            <rect x="40" y="527" width="16" height="10" rx="2.5" class="c-backend" stroke-width="1"/>
+            <text x="62" y="536" class="t-muted" font-size="10" font-weight="500">a running agent session</text>
+          </g>
+          <g data-legend-semantic-kind="database" data-legend-kind="database" data-legend-label="plain markdown files" data-legend-x="220" data-legend-baseline="536" data-legend-width="143">
+            <rect x="220" y="527" width="16" height="10" rx="2.5" class="c-database" stroke-width="1"/>
+            <text x="242" y="536" class="t-muted" font-size="10" font-weight="500">plain markdown files</text>
+          </g>
+          <g data-legend-semantic-kind="security" data-legend-kind="security" data-legend-label="rule file" data-legend-x="385" data-legend-baseline="536" data-legend-width="88">
+            <rect x="385" y="527" width="16" height="10" rx="2.5" class="c-security" stroke-width="1"/>
+            <text x="407" y="536" class="t-muted" font-size="10" font-weight="500">rule file</text>
+          </g>
+          <g data-legend-semantic-kind="external" data-legend-kind="external" data-legend-label="you, your folders, your commit" data-legend-x="495" data-legend-baseline="536" data-legend-width="192">
+            <rect x="495" y="527" width="16" height="10" rx="2.5" class="c-external" stroke-width="1"/>
+            <text x="517" y="536" class="t-muted" font-size="10" font-weight="500">you, your folders, your commit</text>
+          </g>
+        </g>
+      </svg>

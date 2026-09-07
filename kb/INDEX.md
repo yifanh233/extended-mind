@@ -9,7 +9,7 @@ schedule.md carries today.
 - (not yet set up — first contact pending; rule 0 applies)
 
 ## Files
-- kb/templates.md — grammars: SESSLOG §B, schedule §S, notes §D, principles §P, review §R, ritual §F, discovery §H, skills §K
+- kb/templates.md — grammars: SESSLOG §B, schedule §S, notes §D, principles §P, review §R, project file §W, scope §C, evidence §E, ritual §F, discovery §H, skills §K, project loop §J
 - kb/skills/ — _index.md + one file per compiled skill (empty — grows from your repeated work, §K)
 - kb/learner.md — spaced-repetition state (module on STANDBY)
 - kb/questions.md — open questions ledger (empty)
@@ -17,6 +17,7 @@ schedule.md carries today.
 - kb/quarantine.md — unverified claims (empty)
 - kb/principles/ — meta.md + _router.md + candidates/ (empty)
 - kb/notes/ — one file per concept (empty — grows from your sessions)
+- STATUS.md / UPDATES.md / CHANGELOG.md — current state, session changes, version changes
 - root: schedule.md, inbox.md, sesslog.md (operational state), GUIDE.md
 
 ## Concepts (slug — one-line summary)
