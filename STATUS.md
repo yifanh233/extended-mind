@@ -1,7 +1,7 @@
 # Current state
 
 As of: first setup pending. Scope: project/system.
-Version: v3.2.0 (pilot); see [CHANGELOG.md](CHANGELOG.md).
+Version: v3.2.1 (pilot); see [CHANGELOG.md](CHANGELOG.md).
 User acceptance: not recorded for your copy yet.
 
 - Ready to try: memory, project decisions/assumptions, scoped change checks,

@@ -1,4 +1,4 @@
-# Release checks — v3.2.0, 2026-11-05 (rules v3.2, parts 1 and 2)
+# Release checks — v3.2.0 and its v3.2.1 patch, 2026-11-05 (rules v3.2, parts 1 and 2)
 
 These are engineering checks, not effectiveness evaluation. Part 1 adds the EM
 line (rule 15) and the rule 6 sentence on tool output, fixes claims that were
@@ -49,6 +49,13 @@ consolidation helper in shadow mode, and a re-rendered architecture picture.
   SVGs. Both architecture SVGs, and architecture.html on the full diagram and
   on each of its three guided views, were screenshotted in headless Chrome and
   looked at, light and dark. The session picture is unchanged since part 1.
+- v3.2.1 re-renders the architecture picture with the rule names: the legend
+  and learning lines on its cards and the SVG `<desc>`; ids, layout and the
+  kb/principles/ path stay. The autofix validator needed 0 rounds, and deliver
+  passed 9/9 artifact checks and the showcase profile. Every IR label,
+  sublabel and edge label appears in both SVGs, and the diff touches only the
+  renamed texts. Both SVGs and architecture.html, full and in each guided
+  view, were screenshotted in headless Chrome and looked at, light and dark.
 
 Session `<desc>`, as passed to build_svgs.py:
 
@@ -77,7 +84,7 @@ Architecture `<desc>`, as passed to build_svgs.py:
 > to sesslog.md, and works in your project folders, which are named by where:
 > lines. After each handback the consolidation helper reads the log and relays
 > what waits for you. When you say pending and answer y or n, approved items
-> become notes in kb/notes and INDEX, principle candidates, or labelled rules in
+> become notes in kb/notes and INDEX, candidate rules, or labelled rules in
 > kb/rules.md; repeated integrations become skill drafts in kb/skills. Your
 > approval of a shown commit ratifies this folder, whoever runs it.
 
@@ -87,10 +94,8 @@ Architecture `<desc>`, as passed to build_svgs.py:
 - Helper limits seen in the smoke test: a new folder reports a deep pass as due
   until one has run, and the notice "control changed: shadow" repeats until a
   first `pending` review shows it.
-- Names (rules at every scope): the rule files and guides call the former
-  principles task-scoped rules. The architecture picture was not re-rendered
-  for this rename: its legend still says "principles judge", and its `<desc>`
-  above still says "principle candidates".
+- Names (rules at every scope): the rule files, the guides and, since v3.2.1,
+  the architecture picture call the former principles task-scoped rules.
 - Not run: a fresh-agent rehearsal (say hi, one task, end) or an outside-user
   pilot. The consolidation helper was not exercised by a real agent session.
 - Not measured: comprehension, usefulness, time saved, adoption, the EM line's
@@ -99,4 +104,4 @@ Architecture `<desc>`, as passed to build_svgs.py:
   Chinese documents remain frozen: they lack the EM line, still describe the
   old tidy-up and may differ from the English candidate.
 
-This describes release v3.2.0. See [version state](../CHANGELOG.md).
+This describes release v3.2.0 and its v3.2.1 patch. See [version state](../CHANGELOG.md).

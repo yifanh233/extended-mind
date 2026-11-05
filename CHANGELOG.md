@@ -1,5 +1,15 @@
 # Version changes
 
+## v3.2.1 — 2026-11-05
+
+### Changed
+
+- The architecture picture (`docs/architecture.*`) now uses the rule names:
+  its legend says rules frame (universal, project-scoped) and judge
+  (task-scoped), its learning line says candidate rule, and its description
+  says candidate rules. The `kb/principles/` folder keeps its name. Nothing
+  else changed from v3.2.0.
+
 ## v3.2.0 — 2026-11-05
 
 ### Added

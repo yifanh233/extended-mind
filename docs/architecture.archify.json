@@ -431,7 +431,7 @@
       "dot": "emerald",
       "title": "Memory tiers",
       "items": [
-        "Rules frame · principles judge · skills execute · notes know · episodes remember",
+        "Rules frame (universal, project-scoped) and judge (task-scoped) · skills execute · notes know · episodes remember",
         "Always loaded: AGENTS.md + kb/INDEX.md — line-budgeted, because loading costs context",
         "Every note claim carries src · method (human/web/model/derived) · verified · conf",
         "Model-generated claims stay on their log line: never asserted, checked only in the optional deep pass"
@@ -444,7 +444,7 @@
         "Session: one-line boot → work → one log block (automatic) → your commit",
         "Consolidation, inside sessions: a relay after each handback · say pending · y or n · the deep pass (consolidate) stays optional",
         "Plan: 'what should I do next?' answers from YOUR approved items; suggestions only when none remain",
-        "Learning: what worked → candidate principle → you promote → loads; the same integration twice → a skill draft → your commit"
+        "Learning: what worked → candidate rule → you promote → loads; the same integration twice → a skill draft → your commit"
       ]
     },
     {

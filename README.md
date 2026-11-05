@@ -3,7 +3,7 @@
 A plain-text folder that keeps one person in charge of their AI agent across
 months: the agent writes, you approve, every claim keeps its source.
 
-**Version 3.2.0 (pilot).** New in this release: the EM line at the end of
+**Version 3.2.1 (pilot).** New in 3.2: the EM line at the end of
 every answer, consolidation inside sessions, `pending` for decisions a few at a
 time, one name for everything that steers the assistant (rules, at four
 scopes), and eleven [optional rules](#optional-rules) you can switch on. The
