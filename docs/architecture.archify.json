@@ -13,7 +13,7 @@
           "label": "plain markdown files"
         },
         "backend": {
-          "label": "a running process (session, ritual)"
+          "label": "a running process (session, helper)"
         },
         "security": {
           "label": "rule file"
@@ -46,13 +46,14 @@
           "sesslog",
           "ritual",
           "notes",
-          "quarantine",
+          "rules",
           "principles",
           "skills",
+          "agent",
           "gate",
           "user"
         ],
-        "note": "Say consolidate: the ritual distills log blocks into notes, web-verifies held claims, updates principle records, drafts skills; you commit."
+        "note": "After each handback the helper relays what waits; say pending, answer y or n; approved items become notes, candidates or rules; you commit."
       },
       {
         "id": "governance",
@@ -60,12 +61,13 @@
         "focus": [
           "constitution",
           "principles",
+          "rules",
           "skills",
           "agent",
           "gate",
           "user"
         ],
-        "note": "Rules frame every session, the router loads matching judgment, skills execute repeated work; nothing is ratified until you commit."
+        "note": "Rules frame every session, the library labels them, the router loads judgment, skills execute repeated work; you commit to ratify."
       }
     ]
   },
@@ -185,8 +187,8 @@
     {
       "id": "ritual",
       "type": "backend",
-      "label": "Consolidation ritual",
-      "sublabel": "on consolidate",
+      "label": "Consolidation helper",
+      "sublabel": "relay · pending review",
       "pos": [
         750,
         440
@@ -211,10 +213,10 @@
       ]
     },
     {
-      "id": "quarantine",
+      "id": "rules",
       "type": "database",
-      "label": "kb/quarantine.md",
-      "sublabel": "held, never asserted",
+      "label": "kb/rules.md",
+      "sublabel": "rule library · labels",
       "pos": [
         1000,
         580
@@ -257,7 +259,7 @@
         "schedule",
         "sesslog",
         "notes",
-        "quarantine"
+        "rules"
       ]
     }
   ],
@@ -329,7 +331,7 @@
       "id": "gather",
       "from": "sesslog",
       "to": "ritual",
-      "label": "blocks since last",
+      "label": "relay after submit",
       "fromSide": "right",
       "toSide": "left",
       "labelAt": [
@@ -338,25 +340,52 @@
       ]
     },
     {
+      "id": "review",
+      "from": "agent",
+      "to": "ritual",
+      "label": "your y or n",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "via": [
+        [
+          340,
+          404
+        ],
+        [
+          715,
+          404
+        ],
+        [
+          715,
+          472
+        ]
+      ],
+      "labelAt": [
+        610,
+        404
+      ]
+    },
+    {
       "id": "distill",
       "from": "ritual",
       "to": "notes",
-      "label": "distills",
+      "label": "y → notes",
       "variant": "emphasis",
       "fromSide": "right",
       "toSide": "left"
     },
     {
-      "id": "verify",
+      "id": "library",
       "from": "ritual",
-      "to": "quarantine",
-      "label": "web-verifies"
+      "to": "rules",
+      "label": "y → rules"
     },
     {
       "id": "garden",
       "from": "ritual",
       "to": "principles",
-      "label": "updates records",
+      "label": "lesson cards",
       "variant": "dashed",
       "fromSide": "top",
       "toSide": "bottom"
@@ -405,7 +434,7 @@
         "Rules frame · principles judge · skills execute · notes know · episodes remember",
         "Always loaded: AGENTS.md + kb/INDEX.md — line-budgeted, because loading costs context",
         "Every note claim carries src · method (human/web/model/derived) · verified · conf",
-        "Model-generated claims are quarantined: listed, never asserted, verified by the ritual"
+        "Model-generated claims stay on their log line: never asserted, checked only in the optional deep pass"
       ]
     },
     {
@@ -413,7 +442,7 @@
       "title": "Loops",
       "items": [
         "Session: one-line boot → work → one log block (automatic) → your commit",
-        "Consolidate (on your word, every few days): distill · verify · bridge · Brief",
+        "Consolidation, inside sessions: a relay after each handback · say pending · y or n · the deep pass (consolidate) stays optional",
         "Plan: 'what should I do next?' answers from YOUR approved items; suggestions only when none remain",
         "Learning: what worked → candidate principle → you promote → loads; the same integration twice → a skill draft → your commit"
       ]
@@ -424,7 +453,7 @@
       "items": [
         "Work stays where it lives; workspace/<project>/PROJECT.md where: lines point at those folders",
         "Each line echoed and assented once = standing permission (read-only unless you say rw)",
-        "One live session per scope; end is the baton between agents and windows"
+        "Two agents may plan or research together; one at a time builds or tests; end is the baton between agents"
       ]
     }
   ]

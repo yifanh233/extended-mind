@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 552" role="img" lang="en" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="editorial" data-quality-profile="showcase">
         <title id="archify-diagram-title">What happens in one session?</title>
-        <desc id="archify-diagram-description">You talk to an AI agent session in natural language. At the start of every session the agent loads AGENTS.md, the rule file, and reads your memory files: notes, the session log, the plan and the inbox. It works in your project folders, which stay where they are and are named by where: lines. During the session it appends one log block and proposes plan items marked [?]. Nothing becomes permanent until you approve a commit, whoever executes it, which ratifies this folder.</desc>
+        <desc id="archify-diagram-description">You talk to an AI agent session in natural language. At the start of every session the agent loads AGENTS.md, the rule file, with the kb/LOAD.md router, and reads your memory files: notes, the session log, the plan and the inbox. It works in your project folders, which stay where they are and are named by where: lines. During the session it appends one log block and proposes plan items marked [?]. It ends each answer with the EM line: what it used, what it found, what it changed and what waits on you. Nothing becomes permanent until you approve a commit, whoever executes it, which ratifies this folder.</desc>
         <!-- Definitions -->
         <defs><style>:root,svg{--bg:#f2eee5;--grid:#d8d0c2;--text:#242018;--text-muted:#6f6658;--text-dim:#a09788;--text-faint:#817767;--panel:rgba(251, 248, 241, 0.97);--panel-border:#c4b9a6;--lane-fill:rgba(229, 221, 207, 0.42);--lane-stroke:#b8aa94;--arrow:#8a806f;--arrow-emphasis:#bb4c23;--mask:#fbf8f1;--frontend-fill:rgba(31, 117, 126, 0.09);--frontend-stroke:#287e84;--backend-fill:rgba(42, 119, 75, 0.09);--backend-stroke:#397b53;--database-fill:rgba(105, 75, 130, 0.09);--database-stroke:#765d86;--cloud-fill:rgba(157, 103, 31, 0.1);--cloud-stroke:#9a671f;--security-fill:rgba(153, 58, 52, 0.09);--security-stroke:#9e463f;--messagebus-fill:rgba(182, 70, 27, 0.09);--messagebus-stroke:#ad4b25;--external-fill:rgba(101, 91, 75, 0.09);--external-stroke:#746b5e;--toolbar-bg:rgba(251, 248, 241, 0.94);--toolbar-border:#c4b9a6;--toolbar-text:#40392f;--toolbar-hover:#fffdf8;--toolbar-menu-bg:#fbf8f1}
 html[data-embed="true"] .diagram-container svg{min-width: 0;}
@@ -413,11 +413,12 @@ svg[data-animation="trace"] [data-animate="node"]{animation-name: archify-editor
 
         <!-- Connection paths (before components for correct z-order) -->
         <path data-edge-from="user" data-edge-to="agent" data-edge-label="natural language" data-edge-key="0" data-edge-id="talk" data-composition-points="210,232;300,232" d="M 210 232 L 300 232" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="rules" data-edge-to="agent" data-edge-label="loads at start" data-edge-key="1" data-edge-id="rules-load" data-composition-points="580,72;390,72;390,200" d="M 580 72 L 398 72 Q 390 72 390 80 L 390 200" class="a-security" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
-        <path data-edge-from="memory" data-edge-to="agent" data-edge-label="reads at boot" data-edge-key="2" data-edge-id="read" data-composition-points="580,232;480,232" d="M 580 232 L 480 232" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="agent" data-edge-to="memory" data-edge-label="appends log · proposes [?]" data-edge-key="3" data-edge-id="write" data-composition-points="390,264;390,320;675,320;675,264" d="M 390 264 L 390 312 Q 390 320 398 320 L 667 320 Q 675 320 675 312 L 675 264" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="agent" data-edge-to="projects" data-edge-label="works there (where:)" data-edge-key="4" data-edge-id="reach" data-composition-points="390,264;390,400" d="M 390 264 L 390 400" class="a-dashed" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="user" data-edge-to="gate" data-edge-label="approve commit — ratifies folder" data-edge-key="5" data-edge-id="ratify" data-composition-points="125,264;125,520;675,520;675,464" d="M 125 264 L 125 512 Q 125 520 133 520 L 667 520 Q 675 520 675 512 L 675 464" class="a-security" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="agent" data-edge-to="user" data-edge-label="ends each answer with the EM line" data-edge-key="1" data-edge-id="em-line" data-composition-points="390,264;390,300;125,300;125,264" d="M 390 264 L 390 292 Q 390 300 382 300 L 133 300 Q 125 300 125 292 L 125 264" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="rules" data-edge-to="agent" data-edge-label="loads at start" data-edge-key="2" data-edge-id="rules-load" data-composition-points="580,72;390,72;390,200" d="M 580 72 L 398 72 Q 390 72 390 80 L 390 200" class="a-security" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="memory" data-edge-to="agent" data-edge-label="reads at boot" data-edge-key="3" data-edge-id="read" data-composition-points="580,232;480,232" d="M 580 232 L 480 232" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="agent" data-edge-to="memory" data-edge-label="appends log · proposes [?]" data-edge-key="4" data-edge-id="write" data-composition-points="390,264;390,320;675,320;675,264" d="M 390 264 L 390 312 Q 390 320 398 320 L 667 320 Q 675 320 675 312 L 675 264" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="agent" data-edge-to="projects" data-edge-label="works there (where:)" data-edge-key="5" data-edge-id="reach" data-composition-points="390,264;390,400" d="M 390 264 L 390 400" class="a-dashed" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="user" data-edge-to="gate" data-edge-label="approve commit — ratifies folder" data-edge-key="6" data-edge-id="ratify" data-composition-points="40,232;20,232;20,500;675,500;675,464" d="M 40 232 L 28 232 Q 20 232 20 240 L 20 492 Q 20 500 28 500 L 667 500 Q 675 500 675 492 L 675 464" class="a-security" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
 
         <!-- Components -->
         <g id="node-user" data-node-id="user" data-node-label="You" aria-label="Focus You, judgment · approval, Architecture component" data-node-kind="external" data-node-sublabel="judgment · approval" data-node-context="Architecture component">
@@ -443,8 +444,8 @@ svg[data-animation="trace"] [data-animate="node"]{animation-name: archify-editor
         <text data-detail="context" x="390" y="246" class="t-muted" font-size="9" text-anchor="middle">any coding agent</text>
         </g>
 
-        <g id="node-rules" data-node-id="rules" data-node-label="AGENTS.md" aria-label="Focus AGENTS.md, the rules, read every session, This folder — plain files, versioned by your commits" data-node-kind="security" data-node-sublabel="the rules, read every session" data-node-context="This folder — plain files, versioned by your commits">
-          <title>AGENTS.md · the rules, read every session · This folder — plain files, versioned by your commits</title>
+        <g id="node-rules" data-node-id="rules" data-node-label="AGENTS.md" aria-label="Focus AGENTS.md, the rules + kb/LOAD.md router, This folder — plain files, versioned by your commits" data-node-kind="security" data-node-sublabel="the rules + kb/LOAD.md router" data-node-context="This folder — plain files, versioned by your commits">
+          <title>AGENTS.md · the rules + kb/LOAD.md router · This folder — plain files, versioned by your commits</title>
           <rect x="580" y="40" width="190" height="64" rx="6" class="c-mask"/>
           <rect x="580" y="40" width="190" height="64" rx="6" class="c-security" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(586 46) scale(0.6875)">
@@ -452,7 +453,7 @@ svg[data-animation="trace"] [data-animate="node"]{animation-name: archify-editor
             <path d="m5.8 8 1.5 1.5 3-3"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="675" y="70" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">AGENTS.md</text>
-        <text data-detail="context" x="675" y="86" class="t-muted" font-size="9" text-anchor="middle">the rules, read every session</text>
+        <text data-detail="context" x="675" y="86" class="t-muted" font-size="9" text-anchor="middle">the rules + kb/LOAD.md router</text>
         </g>
 
         <g id="node-memory" data-node-id="memory" data-node-label="Your memory files" aria-label="Focus Your memory files, notes · log · plan · inbox, This folder — plain files, versioned by your commits" data-node-kind="database" data-node-sublabel="notes · log · plan · inbox" data-node-context="This folder — plain files, versioned by your commits">
@@ -496,24 +497,28 @@ svg[data-animation="trace"] [data-animate="node"]{animation-name: archify-editor
           <rect x="211.6" y="212" width="86.8" height="14" rx="3" class="c-mask"/>
           <text x="255" y="222" class="t-backend" font-size="8" text-anchor="middle">natural language</text>
         </g>
-        <g data-detail="context" data-edge-from="rules" data-edge-to="agent" data-edge-label="loads at start" data-edge-key="1" data-edge-id="rules-load">
+        <g data-detail="context" data-edge-from="agent" data-edge-to="user" data-edge-label="ends each answer with the EM line" data-edge-key="1" data-edge-id="em-line">
+          <rect x="173.3" y="280" width="168.4" height="14" rx="3" class="c-mask"/>
+          <text x="257.5" y="290" class="t-muted" font-size="8" text-anchor="middle">ends each answer with the EM line</text>
+        </g>
+        <g data-detail="context" data-edge-from="rules" data-edge-to="agent" data-edge-label="loads at start" data-edge-key="2" data-edge-id="rules-load">
           <rect x="351.4" y="116" width="77.2" height="14" rx="3" class="c-mask"/>
           <text x="390" y="126" class="t-security" font-size="8" text-anchor="middle">loads at start</text>
         </g>
-        <g data-detail="context" data-edge-from="memory" data-edge-to="agent" data-edge-label="reads at boot" data-edge-key="2" data-edge-id="read">
+        <g data-detail="context" data-edge-from="memory" data-edge-to="agent" data-edge-label="reads at boot" data-edge-key="3" data-edge-id="read">
           <rect x="493.8" y="208" width="72.4" height="14" rx="3" class="c-mask"/>
           <text x="530" y="218" class="t-muted" font-size="8" text-anchor="middle">reads at boot</text>
         </g>
-        <g data-detail="context" data-edge-from="agent" data-edge-to="memory" data-edge-label="appends log · proposes [?]" data-edge-key="3" data-edge-id="write">
+        <g data-detail="context" data-edge-from="agent" data-edge-to="memory" data-edge-label="appends log · proposes [?]" data-edge-key="4" data-edge-id="write">
           <rect x="465.1" y="300" width="134.8" height="14" rx="3" class="c-mask"/>
           <text x="532.5" y="310" class="t-backend" font-size="8" text-anchor="middle">appends log · proposes [?]</text>
         </g>
-        <g data-detail="context" data-edge-from="agent" data-edge-to="projects" data-edge-label="works there (where:)" data-edge-key="4" data-edge-id="reach">
+        <g data-detail="context" data-edge-from="agent" data-edge-to="projects" data-edge-label="works there (where:)" data-edge-key="5" data-edge-id="reach">
           <rect x="247" y="335" width="106" height="14" rx="3" class="c-mask"/>
           <text x="300" y="345" class="t-messagebus" font-size="8" text-anchor="middle">works there (where:)</text>
         </g>
-        <g data-detail="context" data-edge-from="user" data-edge-to="gate" data-edge-label="approve commit — ratifies folder" data-edge-key="5" data-edge-id="ratify">
-          <rect x="268.8" y="468" width="168.4" height="14" rx="3" class="c-mask"/>
+        <g data-detail="context" data-edge-from="user" data-edge-to="gate" data-edge-label="approve commit — ratifies folder" data-edge-key="6" data-edge-id="ratify">
+          <rect x="271.2" y="468" width="163.6" height="14" rx="3" class="c-mask"/>
           <text x="353" y="478" class="t-security" font-size="8" text-anchor="middle">approve commit — ratifies folder</text>
         </g>
 

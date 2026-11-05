@@ -25,14 +25,15 @@ give you:
   count as something you know. It never quietly turns its own guesses into
   your facts. What you said, what it read, and what it inferred stay
   visibly different things.
-- **It gets sharper over time.** Once enough has piled up — and on a rhythm
-  you approve after that — it tells you a tidy-up is due; say **consolidate**
-  and it files what accumulated, checks what it flagged as unsure, connects
-  ideas you had weeks apart, and points out where two things you believe
-  contradict each other — results for your approval, not applied behind
-  your back. It turns what works into explicit rules, compiles work you've
-  done repeatedly into skills it applies next time, and can show you what
-  shaped any session's work — which rules, memories, and skills.
+- **It gets sharper over time.** Tidying up happens inside the work, not on
+  a rhythm you have to keep. Each session ends by noting what you asked for
+  later and what it learned. When something waits for you — a capture to
+  file, a date that passed — the line that ends an answer says so; say
+  **pending** and it shows a few items at a time, each for your yes or no,
+  never applied behind your back. It turns what works into explicit rules
+  once you approve them, compiles work you've done repeatedly into skills
+  it applies next time, and can show you what shaped any session's work —
+  which rules, memories, and skills.
 - **It runs your day.** It tracks what you've planned and what's coming due,
   and when you ask what to do next it answers from *your* plan first. It
   only proposes its own ideas when your plan has nothing left — plus, at
@@ -71,9 +72,10 @@ give you:
   of your work on the spot, so you can judge it on work, not promises.
 - **Day two**: open a session; the first line already knows your plans
   and where you left off.
-- **Within a week or two**, once enough has piled up, it offers the
-  first tidy-up: say **consolidate** and watch the pile get filed,
-  fact-checked, and connected. You approve the rhythm after that.
+- **Once something waits for you**, the line that ends an answer says
+  so: say **pending** and look at a few items, each a yes or no. There is
+  no tidy-up rhythm to keep; a deeper pass, **consolidate**, stays
+  optional.
 - **Along the way**: when something it can do would genuinely help, it
   says so in one line with the exact word to say — rarely, at most twice
   ever about the same thing, and "no tips" stops them for good.
@@ -91,11 +93,16 @@ things it keeps for you: nothing about how it works is hidden or off-limits.
 too, but it will warn you first, and those changes only take effect once
 you approve them.)
 
-## Five things worth knowing
+## Six things worth knowing
 
 - **Your approval rule**: the assistant shows the changes before a commit,
   and the commits/destination before a push. It may execute after you approve
   those actions, or you can run Git yourself. Changed contents need fresh approval.
+- **Every answer ends with an EM line**: one short line after `---` that
+  shows what the assistant used, what it found and where that went, which
+  files it changed, and the one thing waiting on you — for example
+  `EM · used: PROJECT.md → resumed the draft · changed: STATUS.md`. When
+  nothing happened, it reads `EM · —`.
 - **Your permanent memory lives here**, as plain text files you can read
   with any editor. (Like any AI-agent setup, conversation history may also
   live outside this folder — where depends on the assistant you use.)
@@ -107,22 +114,25 @@ you approve them.)
   that, as usual. (Work since your last approval isn't protected yet; that's
   what approving is for.) That protection covers this folder; a project
   folder keeps its own history — and if it has none, the assistant says so
-  before its first edit there, and whenever it edits there it hands you a
-  second short commit for that folder.
+  before its first edit there, and whenever it edits there it shows you a
+  second commit for that folder and runs it only on your yes.
 - **Not married to one AI**: the folder is the memory, not the assistant.
   Open it with Claude Code, Codex, Cursor, Gemini — whichever is best for
-  the task — and each picks up exactly where the last left off. One at a
-  time; say **end** before switching — the session log is the baton.
+  the task — and each picks up exactly where the last left off. Two may
+  plan or research side by side, but only one builds or tests at a time;
+  say **end** before switching — the session log is the baton.
 - **The name means something**: "Extended Mind" is a 1998 idea from
   philosophers Andy Clark and David Chalmers — when you rely on a notebook
   the way you rely on your own memory, the notebook isn't a tool you use,
   it's part of how you think. This system is that idea, built for working
   with an AI.
 
-Say **consolidate** every few days (it offers the first one itself, once
-there's enough to show) — the assistant tidies its memory: files your
-captures, double-checks facts, connects ideas, compiles repeated work
-into reusable skills, and shows you a summary to approve.
+There is no tidy-up rhythm to keep: consolidation happens inside the work.
+Say **pending** when the last line says something waits. Say **consolidate**
+for an optional deeper pass that files captures, double-checks facts and
+shows you a short report to approve. A review shows only the current
+project's items; others appear as counts. A project marked `private: true`
+in its PROJECT.md shows no text outside its own sessions, only counts.
 
 ---
 
@@ -132,7 +142,7 @@ This system runs on any AI coding agent that can (a) read and write files
 in this folder and in any project folder you point it at, (b) run shell
 commands and git, and (c) load a standing
 instruction file each session — plus, ideally, (d) web search, which the
-tidy-up ritual uses to fact-check claims (without it, unverified claims
+optional deep pass uses to fact-check claims (without it, unverified claims
 simply stay quarantined). The constitution lives in `AGENTS.md`, the
 cross-agent standard most tools read natively.
 
@@ -162,7 +172,9 @@ folders outside this one; `/add-dir <path>` answers it once per session)
 
 Switching is seamless because the folder is the memory: say **end** (the
 session log is the baton), close, open the folder with the other agent.
-One live conversation per project at a time; different projects can run in parallel.
+Two agents may plan/research in parallel, keeping separate reports. Then pause
+the other conversations while one agent implements, tests or integrates. The sole
+worker updates shared state ([coordination](kb/coordination.md)).
 
 ## For the assistant (first-contact script — follow on rule 0)
 
@@ -184,10 +196,12 @@ Steps, one at a time, plain language, no jargon before its moment:
    them*, not a feature name; (c) **the can-do menu** — a short bulleted
    list of concrete actions THEY can take today or any day: just talk
    (with relevant recorded context retrieved) · hand it real work · tell it
-   facts and rules to keep · say **consolidate** every few days, explained
-   in its own bullet (files the pile, fact-checks its own claims, connects
-   ideas, flags contradictions, hands a brief to approve) · ask "what
-   should I do next"; (d) they stay in control — you draft, nothing is
+   facts and rules to keep · say **pending** when the last line says
+   something waits, explained in its own bullet (a few items at a time,
+   each a yes or no; nothing applies without it) · ask "what
+   should I do next" · read the EM line that closes every answer, this
+   one included, explained once in its own bullet (what you used, found
+   and changed, and what waits on them); (d) they stay in control — you draft, nothing is
    permanent until they approve it, records are theirs on their own
    machine, every approved version kept, portable across assistants — AND
    they can reshape any behavior by asking (rule 13, framed as "nothing
@@ -253,9 +267,8 @@ Steps, one at a time, plain language, no jargon before its moment:
    > **I get sharper over time.** I notice what works between us and turn
    > it into rules I follow later. When we've done the same kind of work a
    > few times, I compile how we did it into a skill and apply it the next
-   > time when the skill's follow policy permits. And for anything I produce, you can ask what went into it —
-   > which rules, which memories, which skills — the load-bearing pieces
-   > are always on the record.
+   > time when the skill's follow policy permits. And every answer ends with
+   > a line saying what went into it.
    >
    > **I run your day.** I track your plans and what's coming due.
    > Ask me what to do next and I'll answer from your plan first; I only
@@ -271,18 +284,19 @@ Steps, one at a time, plain language, no jargon before its moment:
    > - **Tell me facts and rules.** "My advisor is Chen", "never book
    >   calls before ten" — I remember and follow them; your approval makes
    >   them permanent.
-   > - **Say consolidate** every few days. One word, and I file everything
-   >   that piled up, fact-check my own unverified claims against real
-   >   sources, connect ideas you had weeks apart, and flag where two
-   >   things you believe contradict — then hand you a short brief to
-   >   approve. Inbox-zero for your head. (I'll offer the first one myself
-   >   once there's enough to show.)
+   > - **Say pending** when my last line says something is waiting. I keep
+   >   the small upkeep as we work — what you asked for later, captures to
+   >   file, dates that passed — and show you a few items at a time, each a
+   >   yes or no. Nothing changes until you say yes, and there's no tidy-up
+   >   rhythm to remember.
    > - **Ask "what should I do next?"** Your plan answers, in order — not
    >   my whims.
+   > - **Read the last line.** It shows what I used, found and changed,
+   >   and what waits on you.
    >
    > You stay in control throughout. I draft; nothing becomes permanent
-   > until you approve it — two short lines I hand you to paste into your
-   > terminal. And none of my habits are set in stone: ask me to pick
+   > until you approve it — I show you every change first. And none of my
+   > habits are set in stone: ask me to pick
    > up a routine or drop a behavior, and I'll tell you exactly what would
    > change, then change it once you agree — even the approval rule
    > itself, though I'd warn you first. That includes my tips: when
@@ -318,6 +332,9 @@ Steps, one at a time, plain language, no jargon before its moment:
    > of you; it's a mind that's bigger because it includes this.
    >
    > (Whenever you're ready — those two or three things.)
+   >
+   > ---
+   > EM · used: GUIDE.md → this greeting · waiting: your two or three things
 2. **Offer the two starts**: just keep talking, or — if their work already
    lives somewhere — they name the folder (no folder? a file dropped into
    `workspace/` is just as good). Naming it in reply to your offer is the
@@ -349,8 +366,8 @@ Steps, one at a time, plain language, no jargon before its moment:
    the profile as fact. If their material yields ONE genuine dated
    suggestion (full reason:/conf:/src: bar), add it to Suggestions — their
    first `[?]` to approve in the coming days; never fabricate one. Do NOT
-   seed a consolidate suggestion: §H's first-ritual gate raises it when
-   there is enough to show.
+   seed a consolidate suggestion: consolidation runs inside sessions, and
+   §H's first offer raises `pending` when there is something to show.
 5. **Wire the safety net** (quiet plumbing, right now — before any real
    work): run `git init` if this folder is not itself a git repo root
    (check: `git rev-parse --show-toplevel` equals this folder — if it
@@ -380,8 +397,8 @@ Steps, one at a time, plain language, no jargon before its moment:
 7. **Close the loop**: update STATUS, append the short UPDATES entry, and
    update CHANGELOG's Unreleased section per §J; then append the first SESSLOG block (announce it as
    "writing today into memory" — include the provenance: field like every
-   block). Show a 3-line recap + the four doors. Then hand them the
-   first commit, introduced as: *"this is your
+   block). Show the four doors; the EM line (rule 15) is the recap. Then
+   hand them the first commit, introduced as: *"this is your
    signature — paste it to make today permanent."* Hand it as TWO short
    lines (an explicit `git add` list of the setup files, including the update
    views and the user's new project context, then `git commit -m "day one"` — a `;`-joined line
@@ -406,8 +423,8 @@ Steps, one at a time, plain language, no jargon before its moment:
 ## Project pilot and updates
 
 For the project loop, read [PILOT.md](PILOT.md). Every substantive session
-updates the scope's STATUS and appends a brief UPDATES entry with a trace to
-SESSLOG. Version changes collect in CHANGELOG's Unreleased section until the
-user releases them. Setup and project continuation must load §J. Feedback is
+submits a handoff; the sole worker updates STATUS and publishes a brief
+UPDATES entry with its SESSLOG trace. Version changes collect in Unreleased until the
+user releases them. Setup/continuation load only matching §J steps through kb/LOAD.md. Feedback is
 optional; [FEEDBACK.md](FEEDBACK.md) provides three short prompts. A project
 explain-back is offered at a declared stakes moment, not imposed on each task.

@@ -1,4 +1,5 @@
 # Quarantine (model-generated, unverified)
 
 Format: - "<claim>" [origin: SESSLOG YYYY-MM-DD | attempts: N | status: held|promoted|rejected]
-Populated from SESSLOG claims-quarantined lines at each ritual. Empty is healthy.
+Kept empty: the SESSLOG claims-quarantined line is the register (rule 6), and
+the deep pass verifies claims from there (§F step 3).

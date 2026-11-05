@@ -34,7 +34,7 @@
           "projects",
           "gate"
         ],
-        "note": "You talk; the agent reads rules + memory, works in your folders, appends one log block, proposes plan items; your commit makes it stick."
+        "note": "You talk; the agent reads rules + memory, works in your folders, logs one block, ends answers with the EM line; your commit makes it stick."
       }
     ]
   },
@@ -71,7 +71,7 @@
       "id": "rules",
       "type": "security",
       "label": "AGENTS.md",
-      "sublabel": "the rules, read every session",
+      "sublabel": "the rules + kb/LOAD.md router",
       "pos": [
         580,
         40
@@ -144,6 +144,24 @@
       "variant": "emphasis"
     },
     {
+      "id": "em-line",
+      "from": "agent",
+      "to": "user",
+      "label": "ends each answer with the EM line",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "via": [
+        [
+          390,
+          300
+        ],
+        [
+          125,
+          300
+        ]
+      ]
+    },
+    {
       "id": "rules-load",
       "from": "rules",
       "to": "agent",
@@ -206,16 +224,20 @@
       "to": "gate",
       "label": "approve commit — ratifies folder",
       "variant": "security",
-      "fromSide": "bottom",
+      "fromSide": "left",
       "toSide": "bottom",
       "via": [
         [
-          125,
-          520
+          20,
+          232
+        ],
+        [
+          20,
+          500
         ],
         [
           675,
-          520
+          500
         ]
       ],
       "labelAt": [
@@ -229,8 +251,8 @@
       "dot": "cyan",
       "title": "The one rule",
       "items": [
-        "The agent edits files freely but never commits or pushes",
-        "Your git commit is the signature that makes anything permanent",
+        "The agent edits files freely; it commits or pushes only after you approve what it shows",
+        "An approved commit, whoever runs it, is the signature that makes anything permanent",
         "Until then, everything it wrote is a proposal you can read in any editor"
       ]
     },
@@ -241,7 +263,7 @@
         "A thought hit me → just say it",
         "What should I do next? → your approved plan answers",
         "Think this through with me → it pulls in what you told it before",
-        "Make it stick → say end, paste the two commit lines"
+        "Make it stick → say end, approve the commit it shows"
       ]
     }
   ]

@@ -26,4 +26,6 @@ real `<title>` (the figure's question) and `<desc>` (the walk-through), and stri
 GitHub renders the SVGs in Markdown; it shows the HTML files as source, so they are "download and open".
 
 Parity duty: after any rule change (rule 13), re-read the IR labels against `AGENTS.md` and regenerate.
-The IR was authored against archify 2.16.0-dev.0 (2026-09).
+The IR was authored against archify 2.16.0-dev.0 (2026-09). Both figures were last rendered with archify
+v2.16.0, commit c826e6c3a7abad19c0f3cd1ca57207d54b1ad8de. To reproduce them, check out that commit first:
+`git -C ../archify checkout c826e6c3a7abad19c0f3cd1ca57207d54b1ad8de`.

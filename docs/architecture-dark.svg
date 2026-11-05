@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1250 732" role="img" lang="en" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="editorial" data-quality-profile="showcase">
         <title id="archify-diagram-title">How does what you say become permanent knowledge?</title>
-        <desc id="archify-diagram-description">You talk to an AI agent session. AGENTS.md, the rule file, loads at the start of every session and tells the agent to consult the router in kb/principles. The agent proposes [?] items into schedule.md and inbox.md, appends one block to sesslog.md, and works in your project folders, which are named by where: lines. When you say consolidate, the consolidation ritual gathers the log blocks since the last run, distills them into kb/notes and INDEX, web-verifies the claims held in kb/quarantine.md, updates the principle records, and repeated integrations become skill drafts in kb/skills. Your git commit, your approval, ratifies this folder; the agent never commits.</desc>
+        <desc id="archify-diagram-description">You talk to an AI agent session. AGENTS.md, the rule file, loads at the start of every session and tells the agent to consult the router in kb/principles. The agent proposes [?] items into schedule.md and inbox.md, appends one block to sesslog.md, and works in your project folders, which are named by where: lines. After each handback the consolidation helper reads the log and relays what waits for you. When you say pending and answer y or n, approved items become notes in kb/notes and INDEX, principle candidates, or labelled rules in kb/rules.md; repeated integrations become skill drafts in kb/skills. Your approval of a shown commit ratifies this folder, whoever runs it.</desc>
         <!-- Definitions -->
         <defs><style>:root,svg{--bg:#181611;--grid:#39342a;--text:#f4eddf;--text-muted:#b9ae9b;--text-dim:#776e60;--text-faint:#9d917e;--panel:rgba(35, 31, 24, 0.96);--panel-border:#625a4a;--lane-fill:rgba(52, 46, 35, 0.46);--lane-stroke:#726957;--arrow:#948978;--arrow-emphasis:#dd6b3d;--mask:#231f18;--frontend-fill:rgba(43, 133, 142, 0.16);--frontend-stroke:#7fc6c7;--backend-fill:rgba(63, 132, 92, 0.16);--backend-stroke:#8fc29e;--database-fill:rgba(117, 91, 141, 0.17);--database-stroke:#c0a4d0;--cloud-fill:rgba(170, 119, 49, 0.16);--cloud-stroke:#d8ad68;--security-fill:rgba(157, 69, 65, 0.17);--security-stroke:#df9085;--messagebus-fill:rgba(174, 79, 42, 0.16);--messagebus-stroke:#df946f;--external-fill:rgba(126, 115, 96, 0.18);--external-stroke:#b8ad99;--toolbar-bg:rgba(35, 31, 24, 0.92);--toolbar-border:#625a4a;--toolbar-text:#eee5d5;--toolbar-hover:#302a20;--toolbar-menu-bg:#231f18}
 html[data-embed="true"] .diagram-container svg{min-width: 0;}
@@ -422,12 +422,13 @@ svg[data-animation="trace"] [data-animate="node"]{animation-name: archify-editor
         <path data-edge-from="agent" data-edge-to="schedule" data-edge-label="proposes [?]" data-edge-key="3" data-edge-id="suggest" data-composition-points="430,325;500,325" d="M 430 325 L 500 325" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         <path data-edge-from="agent" data-edge-to="sesslog" data-edge-label="appends a block" data-edge-key="4" data-edge-id="append" data-composition-points="430,339;465,339;465,472;500,472" d="M 430 339 L 457 339 Q 465 339 465 347 L 465 464 Q 465 472 473 472 L 500 472" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         <path data-edge-from="agent" data-edge-to="projects" data-edge-label="works there" data-edge-key="5" data-edge-id="reach" data-composition-points="340,364;340,580" d="M 340 364 L 340 580" class="a-dashed" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="sesslog" data-edge-to="ritual" data-edge-label="blocks since last" data-edge-key="6" data-edge-id="gather" data-composition-points="680,472;750,472" d="M 680 472 L 750 472" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="ritual" data-edge-to="notes" data-edge-label="distills" data-edge-key="7" data-edge-id="distill" data-composition-points="930,465;1000,465" d="M 930 465 L 1000 465" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="ritual" data-edge-to="quarantine" data-edge-label="web-verifies" data-edge-key="8" data-edge-id="verify" data-composition-points="930,479;965,479;965,612;1000,612" d="M 930 479 L 957 479 Q 965 479 965 487 L 965 604 Q 965 612 973 612 L 1000 612" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="ritual" data-edge-to="principles" data-edge-label="updates records" data-edge-key="9" data-edge-id="garden" data-composition-points="840,440;840,104" d="M 840 440 L 840 104" class="a-dashed" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="principles" data-edge-to="skills" data-edge-label="repeat → skill draft" data-edge-key="10" data-edge-id="compile" data-composition-points="930,72;1000,72" d="M 930 72 L 1000 72" class="a-dashed" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="user" data-edge-to="gate" data-edge-label="git commit" data-edge-key="11" data-edge-id="ratify" data-composition-points="130,364;130,580" d="M 130 364 L 130 580" class="a-security" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="sesslog" data-edge-to="ritual" data-edge-label="relay after submit" data-edge-key="6" data-edge-id="gather" data-composition-points="680,472;750,472" d="M 680 472 L 750 472" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="agent" data-edge-to="ritual" data-edge-label="your y or n" data-edge-key="7" data-edge-id="review" data-composition-points="340,364;340,404;715,404;715,472;750,472" d="M 340 364 L 340 396 Q 340 404 348 404 L 707 404 Q 715 404 715 412 L 715 464 Q 715 472 723 472 L 750 472" class="a-dashed" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="ritual" data-edge-to="notes" data-edge-label="y → notes" data-edge-key="8" data-edge-id="distill" data-composition-points="930,465;1000,465" d="M 930 465 L 1000 465" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="ritual" data-edge-to="rules" data-edge-label="y → rules" data-edge-key="9" data-edge-id="library" data-composition-points="930,479;965,479;965,612;1000,612" d="M 930 479 L 957 479 Q 965 479 965 487 L 965 604 Q 965 612 973 612 L 1000 612" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="ritual" data-edge-to="principles" data-edge-label="lesson cards" data-edge-key="10" data-edge-id="garden" data-composition-points="840,440;840,104" d="M 840 440 L 840 104" class="a-dashed" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="principles" data-edge-to="skills" data-edge-label="repeat → skill draft" data-edge-key="11" data-edge-id="compile" data-composition-points="930,72;1000,72" d="M 930 72 L 1000 72" class="a-dashed" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="user" data-edge-to="gate" data-edge-label="git commit" data-edge-key="12" data-edge-id="ratify" data-composition-points="130,364;130,580" d="M 130 364 L 130 580" class="a-security" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
 
         <!-- Components -->
         <g id="node-user" data-node-id="user" data-node-label="You" aria-label="Focus You, judgment · approval, Architecture component" data-node-kind="external" data-node-sublabel="judgment · approval" data-node-context="Architecture component">
@@ -525,15 +526,15 @@ svg[data-animation="trace"] [data-animate="node"]{animation-name: archify-editor
         <text data-detail="context" x="590" y="486" class="t-muted" font-size="9" text-anchor="middle">one block · read at boot</text>
         </g>
 
-        <g id="node-ritual" data-node-id="ritual" data-node-label="Consolidation ritual" aria-label="Focus Consolidation ritual, on consolidate, Architecture component" data-node-kind="backend" data-node-sublabel="on consolidate" data-node-context="Architecture component">
-          <title>Consolidation ritual · on consolidate · Architecture component</title>
+        <g id="node-ritual" data-node-id="ritual" data-node-label="Consolidation helper" aria-label="Focus Consolidation helper, relay · pending review, Architecture component" data-node-kind="backend" data-node-sublabel="relay · pending review" data-node-context="Architecture component">
+          <title>Consolidation helper · relay · pending review · Architecture component</title>
           <rect x="750" y="440" width="180" height="64" rx="6" class="c-mask"/>
           <rect x="750" y="440" width="180" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(756 446) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="840" y="470" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Consolidation ritual</text>
-        <text data-detail="context" x="840" y="486" class="t-muted" font-size="9" text-anchor="middle">on consolidate</text>
+          <text data-node-label="" data-detail-anchor="" x="840" y="470" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Consolidation helper</text>
+        <text data-detail="context" x="840" y="486" class="t-muted" font-size="9" text-anchor="middle">relay · pending review</text>
         </g>
 
         <g id="node-notes" data-node-id="notes" data-node-label="kb/notes/ + INDEX" aria-label="Focus kb/notes/ + INDEX, read at boot · sourced, This folder — plain files, versioned by your commits" data-node-kind="database" data-node-sublabel="read at boot · sourced" data-node-context="This folder — plain files, versioned by your commits">
@@ -548,16 +549,16 @@ svg[data-animation="trace"] [data-animate="node"]{animation-name: archify-editor
         <text data-detail="context" x="1090" y="486" class="t-muted" font-size="9" text-anchor="middle">read at boot · sourced</text>
         </g>
 
-        <g id="node-quarantine" data-node-id="quarantine" data-node-label="kb/quarantine.md" aria-label="Focus kb/quarantine.md, held, never asserted, This folder — plain files, versioned by your commits" data-node-kind="database" data-node-sublabel="held, never asserted" data-node-context="This folder — plain files, versioned by your commits">
-          <title>kb/quarantine.md · held, never asserted · This folder — plain files, versioned by your commits</title>
+        <g id="node-rules" data-node-id="rules" data-node-label="kb/rules.md" aria-label="Focus kb/rules.md, rule library · labels, This folder — plain files, versioned by your commits" data-node-kind="database" data-node-sublabel="rule library · labels" data-node-context="This folder — plain files, versioned by your commits">
+          <title>kb/rules.md · rule library · labels · This folder — plain files, versioned by your commits</title>
           <rect x="1000" y="580" width="180" height="64" rx="6" class="c-mask"/>
           <rect x="1000" y="580" width="180" height="64" rx="6" class="c-database" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(1006 586) scale(0.6875)">
             <ellipse cx="8" cy="4" rx="5" ry="2"/>
             <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="1090" y="610" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">kb/quarantine.md</text>
-        <text data-detail="context" x="1090" y="626" class="t-muted" font-size="9" text-anchor="middle">held, never asserted</text>
+          <text data-node-label="" data-detail-anchor="" x="1090" y="610" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">kb/rules.md</text>
+        <text data-detail="context" x="1090" y="626" class="t-muted" font-size="9" text-anchor="middle">rule library · labels</text>
         </g>
 
         <g id="node-gate" data-node-id="gate" data-node-label="git commit" aria-label="Focus git commit, ratifies this folder, Architecture component" data-node-kind="external" data-node-sublabel="ratifies this folder" data-node-context="Architecture component">
@@ -597,27 +598,31 @@ svg[data-animation="trace"] [data-animate="node"]{animation-name: archify-editor
           <rect x="308.6" y="530" width="62.8" height="14" rx="3" class="c-mask"/>
           <text x="340" y="540" class="t-messagebus" font-size="8" text-anchor="middle">works there</text>
         </g>
-        <g data-detail="context" data-edge-from="sesslog" data-edge-to="ritual" data-edge-label="blocks since last" data-edge-key="6" data-edge-id="gather">
-          <rect x="664.2" y="508" width="91.6" height="14" rx="3" class="c-mask"/>
-          <text x="710" y="518" class="t-muted" font-size="8" text-anchor="middle">blocks since last</text>
+        <g data-detail="context" data-edge-from="sesslog" data-edge-to="ritual" data-edge-label="relay after submit" data-edge-key="6" data-edge-id="gather">
+          <rect x="661.8" y="508" width="96.39999999999999" height="14" rx="3" class="c-mask"/>
+          <text x="710" y="518" class="t-muted" font-size="8" text-anchor="middle">relay after submit</text>
         </g>
-        <g data-detail="context" data-edge-from="ritual" data-edge-to="notes" data-edge-label="distills" data-edge-key="7" data-edge-id="distill">
-          <rect x="940.8" y="445" width="48.4" height="14" rx="3" class="c-mask"/>
-          <text x="965" y="455" class="t-backend" font-size="8" text-anchor="middle">distills</text>
+        <g data-detail="context" data-edge-from="agent" data-edge-to="ritual" data-edge-label="your y or n" data-edge-key="7" data-edge-id="review">
+          <rect x="578.6" y="394" width="62.8" height="14" rx="3" class="c-mask"/>
+          <text x="610" y="404" class="t-messagebus" font-size="8" text-anchor="middle">your y or n</text>
         </g>
-        <g data-detail="context" data-edge-from="ritual" data-edge-to="quarantine" data-edge-label="web-verifies" data-edge-key="8" data-edge-id="verify">
-          <rect x="931.2" y="525.5" width="67.6" height="14" rx="3" class="c-mask"/>
-          <text x="965" y="535.5" class="t-muted" font-size="8" text-anchor="middle">web-verifies</text>
+        <g data-detail="context" data-edge-from="ritual" data-edge-to="notes" data-edge-label="y → notes" data-edge-key="8" data-edge-id="distill">
+          <rect x="938.4" y="445" width="53.199999999999996" height="14" rx="3" class="c-mask"/>
+          <text x="965" y="455" class="t-backend" font-size="8" text-anchor="middle">y → notes</text>
         </g>
-        <g data-detail="context" data-edge-from="ritual" data-edge-to="principles" data-edge-label="updates records" data-edge-key="9" data-edge-id="garden">
-          <rect x="799" y="420" width="82" height="14" rx="3" class="c-mask"/>
-          <text x="840" y="430" class="t-messagebus" font-size="8" text-anchor="middle">updates records</text>
+        <g data-detail="context" data-edge-from="ritual" data-edge-to="rules" data-edge-label="y → rules" data-edge-key="9" data-edge-id="library">
+          <rect x="938.4" y="525.5" width="53.199999999999996" height="14" rx="3" class="c-mask"/>
+          <text x="965" y="535.5" class="t-muted" font-size="8" text-anchor="middle">y → rules</text>
         </g>
-        <g data-detail="context" data-edge-from="principles" data-edge-to="skills" data-edge-label="repeat → skill draft" data-edge-key="10" data-edge-id="compile">
+        <g data-detail="context" data-edge-from="ritual" data-edge-to="principles" data-edge-label="lesson cards" data-edge-key="10" data-edge-id="garden">
+          <rect x="806.2" y="420" width="67.6" height="14" rx="3" class="c-mask"/>
+          <text x="840" y="430" class="t-messagebus" font-size="8" text-anchor="middle">lesson cards</text>
+        </g>
+        <g data-detail="context" data-edge-from="principles" data-edge-to="skills" data-edge-label="repeat → skill draft" data-edge-key="11" data-edge-id="compile">
           <rect x="907" y="108" width="106" height="14" rx="3" class="c-mask"/>
           <text x="960" y="118" class="t-messagebus" font-size="8" text-anchor="middle">repeat → skill draft</text>
         </g>
-        <g data-detail="context" data-edge-from="user" data-edge-to="gate" data-edge-label="git commit" data-edge-key="11" data-edge-id="ratify">
+        <g data-detail="context" data-edge-from="user" data-edge-to="gate" data-edge-label="git commit" data-edge-key="12" data-edge-id="ratify">
           <rect x="101" y="368" width="58" height="14" rx="3" class="c-mask"/>
           <text x="130" y="378" class="t-security" font-size="8" text-anchor="middle">git commit</text>
         </g>
@@ -636,9 +641,9 @@ svg[data-animation="trace"] [data-animate="node"]{animation-name: archify-editor
         <!-- Legend -->
         <g data-legend="" data-legend-bridge="">
           <text x="40" y="696" class="t-primary" font-size="12" font-weight="650">Legend</text>
-          <g data-legend-semantic-kind="backend" data-legend-kind="backend" data-legend-label="a running process (session, ritual)" data-legend-x="40" data-legend-baseline="716" data-legend-width="217">
+          <g data-legend-semantic-kind="backend" data-legend-kind="backend" data-legend-label="a running process (session, helper)" data-legend-x="40" data-legend-baseline="716" data-legend-width="217">
             <rect x="40" y="707" width="16" height="10" rx="2.5" class="c-backend" stroke-width="1"/>
-            <text x="62" y="716" class="t-muted" font-size="10" font-weight="500">a running process (session, ritual)</text>
+            <text x="62" y="716" class="t-muted" font-size="10" font-weight="500">a running process (session, helper)</text>
           </g>
           <g data-legend-semantic-kind="database" data-legend-kind="database" data-legend-label="plain markdown files" data-legend-x="279" data-legend-baseline="716" data-legend-width="143">
             <rect x="279" y="707" width="16" height="10" rx="2.5" class="c-database" stroke-width="1"/>
